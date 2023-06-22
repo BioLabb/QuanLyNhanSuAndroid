@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edtUser, edtPass;
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // init
-        edtUser = (EditText) findViewById(R.id.inputTextEmail);
+        edtUser = (EditText) findViewById(R.id.inputTextUser);
         edtPass= (EditText) findViewById(R.id.inputTextPass);
         btnSign = (Button) findViewById(R.id.btnSign);
 
@@ -28,28 +29,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v.getId() == btnSign.getId()) {
-            // nếu user và pass không rỗng thì cho đăng nhập
-            // ngược lại thông báo lỗi
-            if (isStringEmpty(edtUser.getText().toString())) {
-                edtUser.setError("Vui lòng nhập user hoặc email");
-            }if (isStringEmpty(edtPass.getText().toString())) {
-                edtPass.setError("Vui lòng nhập mật khẩu");
-                return;
-            } else {
+            if(isUser()){
                 Intent intent = new Intent(this, UserActivity.class);
                 startActivity(intent);
+            }else {
+                Toast.makeText(this,"incorrect user or password",Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    // trả về true nếu chuỗi trong
-    private Boolean isStringEmpty(String s){
-        return s.length() == 0 ? true:false;
-    }
+   // if valid user
+   //  setError is null and return true
+   // contrary
+   //  setError and return false
+   private Boolean validUser(){
+        String user = edtUser.getText().toString().trim();
+        if(user.length() > 0){
+            edtUser.setError(null);
+            return true;
+        }else{
+            edtUser.setError("Require");
+            return false;
+        }
+   }
 
-    // trả về true nếu user và pass đúng
+    // if valid pass
+    //  setError is null and return true
+    // contrary
+    //  setError and return false
+   private Boolean validPass(){
+        String pass = edtPass.getText().toString().trim();
+        if(pass.length() >0){
+            edtPass.setError(null);
+            return true;
+        }else {
+            edtPass.setError("requite");
+            return false;
+        }
+   }
+
+
+   private Boolean confirmInput(){
+        if(!validUser() || !validPass()){
+            return false;
+        }else
+            return true;
+   }
     private Boolean isUser(){
-        return true;
+        if(confirmInput()){
+            return true;
+        }
+        return false;
     }
 
 }

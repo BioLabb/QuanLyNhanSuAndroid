@@ -3,6 +3,7 @@
     <string name="login">Login</string>
     <string name="text_login">Please sign in to continue </string>
     <string name="emails">Emails</string>
+    <string name="user">User</string>
     <string name="password">Password</string>
 
     <string name="btn_login">Login</string>

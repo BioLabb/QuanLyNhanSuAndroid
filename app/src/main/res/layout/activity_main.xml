@@ -9,9 +9,11 @@
 <!--login  -->
     <TextView
         android:id="@+id/txt_head_login"
+        style="@android:style/Widget.TextView.PopupMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login"
+        android:fontFamily="@font/lalezar_regular"
         android:textSize="@dimen/text_header"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,23 +37,26 @@
         android:id="@+id/inputTextLayoutMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        android:textColorHint="@color/blue_theme"
         android:layout_marginTop="34dp"
-        app:hintEnabled="true"
+        android:textColorHint="@color/blue_theme"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:helperTextEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title_login">
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_login"
+        app:startIconDrawable="@drawable/baseline_account">
+
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputTextEmail"
+            android:id="@+id/inputTextUser"
             android:layout_width="@dimen/wight_input_login"
             android:layout_height="@dimen/height_input_login"
             android:background="@color/white"
-            android:hint="@string/emails"
+            android:hint="@string/user"
             android:maxLength="@integer/size_user"
+            android:textAllCaps="false"
             tools:layout_editor_absoluteX="50dp"
             tools:layout_editor_absoluteY="260dp" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
 <!--input password-->
@@ -59,7 +64,9 @@
         android:id="@+id/inputTextLayoutPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/baseline_lock"
         app:endIconMode="password_toggle"
+        app:errorEnabled="true"
         android:textColorHint="@color/blue_theme"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="@+id/inputTextLayoutMail"
@@ -80,6 +87,7 @@
         android:id="@+id/btnSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_btn"
         android:layout_marginStart="20dp"
         android:text="@string/login"
         android:layout_marginTop="@dimen/margin_top_login"
