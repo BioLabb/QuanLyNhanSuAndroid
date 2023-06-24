@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 
 import com.example.quanlynhansu.object.Room;
 import com.example.quanlynhansu.sqlitehelper.RoomHelper;
+import com.example.quanlynhansu.sqlitehelper.SQLiteHelper;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -33,7 +34,6 @@ public class ExampleInstrumentedTest {
     @Test
     public  void addRoom(){
         // them room chua co trong data
-
         Room r = new Room(1,"test",123);
         assertEquals(roomHelper.insertRoom(r),1);
     }

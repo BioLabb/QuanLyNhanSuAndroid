@@ -20,7 +20,7 @@ public class UserActivity extends AppCompatActivity {
 
         roomHelper.insertRoom(room);
 
-        Room r1 = roomHelper.getRoom(6);
+        Room r1 = roomHelper.getRoom(10);
 
         System.out.println("id: "+ r1.getRoomID() + " , name: " + r1.getName());
 
