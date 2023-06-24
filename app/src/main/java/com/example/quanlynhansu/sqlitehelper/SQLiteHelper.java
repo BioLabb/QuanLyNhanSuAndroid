@@ -12,7 +12,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "QuanLyNhanSu.db";
     public static final int DB_VERSION = 1;
 
-
      //SQL INIT TABLE
     // create bonus
     public static final String CREATE_BONUS = "CREATE TABLE Bonus (\n" +
