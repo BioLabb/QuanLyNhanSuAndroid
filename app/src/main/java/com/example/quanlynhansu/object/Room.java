@@ -3,7 +3,13 @@ package com.example.quanlynhansu.object;
 public class Room {
     private int roomID;
     private String name;
-    private String number;
+    private int number;
+
+    public Room(int roomID, String name, int number) {
+        this.roomID = roomID;
+        this.name = name;
+        this.number = number;
+    }
 
     public Room(int roomID, String name){
         this.setRoomID(roomID);
@@ -26,11 +32,11 @@ public class Room {
         this.name = name;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 }

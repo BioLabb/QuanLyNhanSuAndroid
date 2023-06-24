@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.quanlynhansu.sqlitehelper.RoomHelper;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edtUser, edtPass;
     Button btnSign;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edtUser = (EditText) findViewById(R.id.inputTextUser);
         edtPass= (EditText) findViewById(R.id.inputTextPass);
         btnSign = (Button) findViewById(R.id.btnSign);
+
 
         //set Onclick
         btnSign.setOnClickListener(this);

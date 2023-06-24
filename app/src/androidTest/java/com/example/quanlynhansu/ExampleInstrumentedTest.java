@@ -1,5 +1,6 @@
 package com.example.quanlynhansu;
 
+import android.app.Instrumentation;
 import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -10,6 +11,9 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import com.example.quanlynhansu.object.Room;
+import com.example.quanlynhansu.sqlitehelper.RoomHelper;
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -17,10 +21,43 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+    Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+    final RoomHelper roomHelper = new RoomHelper(appContext);
     @Test
     public void useAppContext() {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.quanlynhansu", appContext.getPackageName());
     }
+
+
+    @Test
+    public  void addRoom(){
+        // them room chua co trong data
+
+        Room r = new Room(1,"test",123);
+        assertEquals(roomHelper.insertRoom(r),1);
+    }
+
+    @Test
+    public void addRoom1(){
+        // them room da co trong data
+
+        Room r = new Room(1,"test",123);
+        assertEquals(roomHelper.insertRoom(r),0);
+    }
+
+    @Test
+    public void getRoom(){
+        // tim room da co trong data
+        assertEquals(roomHelper.getRoom(1).getRoomID(),1);
+    }
+
+    @Test
+    public void getRoom2(){
+        // tìm room chưa có trong data
+        assertEquals(roomHelper.getRoom(99),null);
+    }
+
+
+
 }
