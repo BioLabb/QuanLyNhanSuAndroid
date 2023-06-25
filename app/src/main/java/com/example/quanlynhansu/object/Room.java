@@ -10,7 +10,10 @@ public class Room {
         this.name = name;
         this.number = number;
     }
-
+    public Room( String name, int number) {
+        this.name = name;
+        this.number = number;
+    }
     public Room(int roomID, String name){
         this.setRoomID(roomID);
         this.setName(name);

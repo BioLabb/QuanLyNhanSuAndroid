@@ -13,26 +13,35 @@ import java.util.List;
 public class RoomHelper{
     private Context context;
     public final static String TABLE_ROOM = "Room";
-    private SQLiteHelper sqLiteHelper;
+
     private SQL q;
     private final SQLiteDatabase Database;
 
     public RoomHelper(Context context){
         // tao co so du lieu
-        sqLiteHelper = new SQLiteHelper(context);
         q  = new SQL(context);
         // tuong tac voi du lie
         // cho ghi va do
-        Database = sqLiteHelper.getWritableDatabase();
+        Database = q.getWritableDatabase();
     }
-
+    public int insertRoom(String name, int number ){
+        ContentValues values = new ContentValues();
+//        values.put("room_id",room.getRoomID()) ;
+        values.put("name",name);
+        values.put("number",number);
+        long statusInsert = Database.insert(TABLE_ROOM,null,values);
+//        Database.close();
+        if(statusInsert < 0)
+            return 0; // insert that bai
+        return 1; // insert thanh cong
+    }
     public int insertRoom(Room room){
         ContentValues values = new ContentValues();
 //        values.put("room_id",room.getRoomID()) ;
         values.put("name",room.getName());
         values.put("number",room.getNumber());
         long statusInsert = Database.insert(TABLE_ROOM,null,values);
-        Database.close();
+//        Database.close();
         if(statusInsert < 0)
             return 0; // insert that bai
         return 1; // insert thanh cong
@@ -73,7 +82,7 @@ public class RoomHelper{
 
     public int removeRoom(int id){
         String SQL = String.format("DELETE FROM %s WHERE ROOM_ID = %d",TABLE_ROOM,id);
-        sqLiteHelper.query(SQL);
+        q.query(SQL);
 
         if(getRoom(id) == null)
             return 1;
@@ -81,8 +90,19 @@ public class RoomHelper{
             return 0;
     }
 
-    public int updateRoom(){
-        return 1;
+    public int updateRoom(Room room) {
+        ContentValues values = new ContentValues();
+        values.put("name", room.getName());
+        values.put("number", room.getNumber());
+
+        String whereClause = "room_id = ?";
+        String[] whereArgs = {String.valueOf(room.getRoomID())};
+
+        int rowsAffected = Database.update(TABLE_ROOM, values, whereClause, whereArgs);
+        if (rowsAffected < 0) {
+            return 0; // Cập nhật thất bại
+        }
+        return 1; // Cập nhật thành công
     }
 
 }
