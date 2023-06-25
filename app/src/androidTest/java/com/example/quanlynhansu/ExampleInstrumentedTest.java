@@ -1,6 +1,5 @@
 package com.example.quanlynhansu;
 
-import android.app.Instrumentation;
 import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -11,9 +10,11 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import com.example.quanlynhansu.object.Attendance;
 import com.example.quanlynhansu.object.Room;
+import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
+import com.example.quanlynhansu.sqlitehelper.RoleAccountHelper;
 import com.example.quanlynhansu.sqlitehelper.RoomHelper;
-import com.example.quanlynhansu.sqlitehelper.SQLiteHelper;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -24,11 +25,15 @@ import com.example.quanlynhansu.sqlitehelper.SQLiteHelper;
 public class ExampleInstrumentedTest {
     Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     final RoomHelper roomHelper = new RoomHelper(appContext);
+    final AttendanceHelper attendanceHelper = new AttendanceHelper(appContext);
+    final RoleAccountHelper roleAccountHelper = new RoleAccountHelper(appContext);
+
     @Test
     public void useAppContext() {
         // Context of the app under test.
         assertEquals("com.example.quanlynhansu", appContext.getPackageName());
     }
+
 
 
     @Test
@@ -43,7 +48,12 @@ public class ExampleInstrumentedTest {
         // them room da co trong data
 
         Room r = new Room(1,"test",123);
-        assertEquals(roomHelper.insertRoom(r),0);
+        assertEquals(roomHelper.insertRoom(r),1);
+    }
+    @Test
+    public void addRoom2(){
+        // them room da co trong data
+        assertEquals(roomHelper.insertRoom("test",123),1);
     }
 
     @Test
@@ -59,5 +69,39 @@ public class ExampleInstrumentedTest {
     }
 
 
+    @Test
+    public  void addAttendance(){
 
+        assertEquals(attendanceHelper.insertAttendance("30-2-2002",3),1);
+    }
+    //nên chạy addAttendance nhiều lần để tránh bị lỗi khi chạy các hàm khác
+    @Test
+    public  void remoteAttendance(){
+
+        assertEquals(attendanceHelper.removeAttendance(1),1);
+    }
+    @Test
+    public  void updateAttendance(){
+
+        assertEquals(attendanceHelper.updateAttendance(new Attendance(2,"20-3-2001",3)),1);
+    }
+
+
+    @Test
+    public  void addRoleA(){
+
+        assertEquals(roleAccountHelper.insertRoleAccount(1,1),1);
+    }
+    public  void addRoleA1(){
+
+        assertEquals(roleAccountHelper.insertRoleAccount(2,1),1);
+    }
+    //nên chạy addAttendance nhiều lần để tránh bị lỗi khi chạy các hàm khác
+    @Test
+    public  void deleteRoleA(){
+
+        assertEquals(roleAccountHelper.deleteRoleAccount(1,1),1);
+        //xoa dựa vào mã roleid và accountid không dựa vào thứ tự bảng
+    }
+  //không cần update vì bảng này mối quan hệ many to many
 }
