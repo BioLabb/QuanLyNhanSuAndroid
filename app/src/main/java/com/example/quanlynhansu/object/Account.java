@@ -13,9 +13,18 @@ public class Account {
     private String phone;
     private String address;
 
-    public Account(int accountID,int roomID,String userName,
-                   String passWord, String fullName, String email){
+    public Account(int accountID, int roomID, String userName, String passWord, String fullName, String email, String phone, String address) {
         this.accountID = accountID;
+        this.roomID = roomID;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public Account(int roomID, String userName, String passWord, String fullName, String email) {
         this.roomID = roomID;
         this.userName = userName;
         this.passWord = passWord;

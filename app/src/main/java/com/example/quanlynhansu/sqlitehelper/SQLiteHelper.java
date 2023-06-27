@@ -10,7 +10,10 @@ import androidx.annotation.Nullable;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "QuanLyNhanSu.db";
-    public static final int DB_VERSION = 1;
+    //old version
+//    public static final int DB_VERSION = 1;
+    // new version
+    public static final int DB_VERSION = 3;
 
      //SQL INIT TABLE
     // create bonus
@@ -25,7 +28,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String CREATE_ATTENDANCE = "CREATE TABLE Attendance (\n" +
             "    attendance_id INTEGER PRIMARY KEY AUTOINCREMENT\n" +
             "                          NOT NULL,\n" +
-            "    date          TEXT    NOT NULL,\n" +
+            "    date          NUMERIC   NOT NULL,\n" +
             "    account_id    INTEGER NOT NULL\n" +
             "                          REFERENCES Account (account_id) \n" +
             ");";
@@ -42,7 +45,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             "    salary_id  INTEGER PRIMARY KEY AUTOINCREMENT\n" +
             "                       NOT NULL,\n" +
             "    amount     REAL    NOT NULL,\n" +
-            "    date       TEXT    NOT NULL,\n" +
+            "    date       NUMERIC    NOT NULL,\n" +
             "    account_id INTEGER NOT NULL\n" +
             "                       REFERENCES Account (account_id) \n" +
             ");" ;
@@ -50,7 +53,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     // create get_salary
     public static final String CREATE_GET_SALARY = "CREATE TABLE Get_Salary (\n" +
             "    id         INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "    date       TEXT    NOT NULL,\n" +
+            "    date       NUMERIC    NOT NULL,\n" +
             "    salary     REAL    NOT NULL,\n" +
             "    bonus      REAL    NOT NULL,\n" +
             "    sum        REAL    NOT NULL,\n" +
@@ -60,7 +63,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     // create leave
     public static final String CREATE_LEAVE = "CREATE TABLE Leave (\n" +
             "    leave_id   INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "    start_date TEXT    NOT NULL,\n" +
+            "    start_date NUMERIC NOT NULL,\n" +
             "    end_date   TEXT    NOT NULL,\n" +
             "    reason     TEXT,\n" +
             "    status     TEXT    NOT NULL,\n" +
@@ -147,6 +150,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     // ĐƯỢC GỌI KHI CÓ VERSION MỚI
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        String SQL_DROP = "DROP TABLE IF EXISTS ";
+
+        db.execSQL(SQL_DROP + "BONUS" );
+        db.execSQL(SQL_DROP + "ACCOUNT");
+        db.execSQL(SQL_DROP + "ROLE_ACCOUNT");
+        db.execSQL(SQL_DROP + "ATTENDANCE");
+        db.execSQL(SQL_DROP + "LEAVE");
+        db.execSQL(SQL_DROP + "SALARY");
+        db.execSQL(SQL_DROP + "GET_SALARY");
+        db.execSQL(SQL_DROP + "ROOM");
+        db.execSQL(SQL_DROP + "ROLE");
+
+        onCreate(db);
 
     }
 }

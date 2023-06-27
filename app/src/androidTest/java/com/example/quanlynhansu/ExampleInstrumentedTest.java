@@ -10,11 +10,17 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.object.Attendance;
+import com.example.quanlynhansu.object.Leave;
 import com.example.quanlynhansu.object.Room;
+import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
+import com.example.quanlynhansu.sqlitehelper.LeaveHelper;
 import com.example.quanlynhansu.sqlitehelper.RoleAccountHelper;
 import com.example.quanlynhansu.sqlitehelper.RoomHelper;
+
+import java.nio.channels.AcceptPendingException;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -96,6 +102,13 @@ public class ExampleInstrumentedTest {
 
         assertEquals(roleAccountHelper.insertRoleAccount(2,1),1);
     }
+
+    @Test
+    public void testDate(){
+        Leave leave = new Leave("12/12/2023","12/12/2024","khu vuc","status",123);
+        LeaveHelper helper = new LeaveHelper(appContext);
+        assertEquals(helper.insertLeave(leave),1);
+    }
     //nên chạy addAttendance nhiều lần để tránh bị lỗi khi chạy các hàm khác
     @Test
     public  void deleteRoleA(){
@@ -104,4 +117,16 @@ public class ExampleInstrumentedTest {
         //xoa dựa vào mã roleid và accountid không dựa vào thứ tự bảng
     }
   //không cần update vì bảng này mối quan hệ many to many
+
+    @Test
+    public void addAccount(){
+//        Account account = new Account(1,"useName","12345","sinhTien","email");
+
+        Account account = new Account(2,1,"useName","12345","sinhTien","email","01424234","adress");
+        AccountHelper accountHelper = new AccountHelper(appContext);
+//        accountHelper.insertAccount(account);
+
+        Account account1 = accountHelper.getAccount(4);
+        assertEquals(account1.getAccountID(),null );
+    }
 }
