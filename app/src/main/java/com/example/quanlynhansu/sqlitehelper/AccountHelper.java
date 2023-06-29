@@ -47,13 +47,14 @@ public class AccountHelper {
         if(cursor.moveToFirst()){
             Account account = new Account(
                 cursor.getInt(0),
-                    cursor.getInt(7),
+                    cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
                     cursor.getString(5),
                     cursor.getString(6),
-                    cursor.getString(1)
+                    cursor.getInt(7)
+
 
             );
             return  account;
@@ -71,13 +72,13 @@ public class AccountHelper {
         while (false == cursor.moveToFirst()){
             Account account = new Account(
                     cursor.getInt(0),
-                    cursor.getInt(7),
+                    cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
                     cursor.getString(5),
                     cursor.getString(6),
-                    cursor.getString(1)
+                    cursor.getInt(7)
             );
             accountList.add(account);
         }

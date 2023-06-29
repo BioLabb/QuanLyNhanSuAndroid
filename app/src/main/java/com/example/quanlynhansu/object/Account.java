@@ -1,27 +1,26 @@
 package com.example.quanlynhansu.object;
 
-import androidx.dynamicanimation.animation.SpringAnimation;
-
 public class Account {
 
     private int accountID;
-    private int roomID;
+
     private String userName;
     private String passWord;
     private String fullName;
     private String email;
     private String phone;
     private String address;
+    private int roomID;
 
-    public Account(int accountID, int roomID, String userName, String passWord, String fullName, String email, String phone, String address) {
+    public Account(int accountID,  String userName, String passWord, String fullName, String email, String phone, String address,int roomID) {
         this.accountID = accountID;
-        this.roomID = roomID;
         this.userName = userName;
         this.passWord = passWord;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.roomID = roomID;
     }
 
     public Account(int roomID, String userName, String passWord, String fullName, String email) {

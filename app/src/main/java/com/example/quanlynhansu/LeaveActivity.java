@@ -7,20 +7,47 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
+
+import com.example.quanlynhansu.Adapter.LeaveAdapter;
+import com.example.quanlynhansu.Adapter.RoomAdapter;
+import com.example.quanlynhansu.object.Leave;
+import com.example.quanlynhansu.object.Room;
+import com.example.quanlynhansu.sqlitehelper.LeaveHelper;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class LeaveActivity extends AppCompatActivity {
+    LeaveHelper leaveHelper;
 
+    ListView Lview;
+    private LeaveAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave);
+
+        int iduser = 20;
+        leaveHelper  = new LeaveHelper(LeaveActivity.this);
         EditText editStartDate = findViewById(R.id.editStartDate);
         EditText editEndDate = findViewById(R.id.editEndDate);
+        EditText editReason = findViewById(R.id.editReason);
+        Button btnSubmit = findViewById(R.id.btnSubmit);
+        Lview = findViewById(R.id.listLeave);
+
+
+        // Lấy dữ liệu từ Room
+        List<Leave> leaveList = leaveHelper.getAllLeavesReverse();
+
+        // Tạo adapter và gắn dữ liệu vào ListView
+        adapter = new LeaveAdapter(LeaveActivity.this, leaveList);
+        Lview.setAdapter(adapter);
+
 
 // Lắng nghe sự kiện chạm vào EditText
         editStartDate.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +151,21 @@ public class LeaveActivity extends AppCompatActivity {
                     editEndDate.setText(inputText);
                     editEndDate.setSelection(inputText.length());
                 }
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Leave leave = new Leave(editStartDate.getText().toString(),editEndDate.getText().toString(),editReason.getText().toString(),"Chưa duyệt",iduser);
+                leaveHelper.insertLeave(leave);
+                System.out.println(leave);
+                System.out.println(editReason.getText().toString());
+
+                System.out.println(editEndDate.getText());
+                System.out.println(editStartDate.getText());
+
+
             }
         });
     }
