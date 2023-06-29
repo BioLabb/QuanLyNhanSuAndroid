@@ -71,6 +71,7 @@
                 android:text="Danh sách các tài khoản" />
 
             <ListView
+                android:id="@+id/listUser"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>

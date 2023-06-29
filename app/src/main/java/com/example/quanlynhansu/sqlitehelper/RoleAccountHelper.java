@@ -5,6 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.quanlynhansu.object.RoleAccount;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoleAccountHelper {
     private Context context;
     public final static String TABLE_ROLE_ACCOUNT = "Role_Account";
@@ -16,8 +21,16 @@ public class RoleAccountHelper {
         this.context = context;
         dbHelper = new SQL(context);
         database = dbHelper.getWritableDatabase();
+        onCreate(database);
     }
+    public void onCreate(SQLiteDatabase database){
+       if(!dbHelper.isTableInitialized(database,TABLE_ROLE_ACCOUNT)){
+           insertRoleAccount(1,2);
+           insertRoleAccount(2,1);
+           insertRoleAccount(3,3);
+       }
 
+    }
     public int insertRoleAccount(int roleId, int accountId) {
         ContentValues values = new ContentValues();
         values.put("role_id", roleId);
@@ -40,5 +53,28 @@ public class RoleAccountHelper {
             return 0; // Xóa thất bại
         }
         return 1; // Xóa thành công
+    }
+    public List<RoleAccount> getAllRoleAccounts() {
+        List<RoleAccount> roleAccountList = new ArrayList<>();
+
+        String query = String.format("SELECT * FROM %s", TABLE_ROLE_ACCOUNT);
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int roleIdIndex = cursor.getColumnIndex("role_id");
+            int accountIdIndex = cursor.getColumnIndex("account_id");
+
+            do {
+                int roleId = cursor.getInt(roleIdIndex);
+                int accountId = cursor.getInt(accountIdIndex);
+
+                RoleAccount roleAccount = new RoleAccount(roleId, accountId);
+                roleAccountList.add(roleAccount);
+            } while (cursor.moveToNext());
+        }
+
+
+
+        return roleAccountList;
     }
 }

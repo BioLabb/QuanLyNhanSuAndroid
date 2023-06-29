@@ -1,15 +1,27 @@
 package com.example.quanlynhansu;
 
+import static com.example.quanlynhansu.MainActivity.RoleUser;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 
 public class PersonalInformation extends AppCompatActivity {
     AccountHelper accountHelper;
+    Button btnEditInformation;
+    EditText editLoginName;
+    EditText editFullName ;
+    EditText editEmail;
+    EditText editNumber ;
+    EditText editAddress ;
+    TextView txtRole;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,17 +29,46 @@ public class PersonalInformation extends AppCompatActivity {
 
         int idUser = 1;
         accountHelper = new AccountHelper(PersonalInformation.this);
+        btnEditInformation = findViewById(R.id.btnEditInformation);
+        editLoginName = findViewById(R.id.editLoginName);
+        editFullName = findViewById(R.id.editFullName);
+        editEmail = findViewById(R.id.editEmail);
+        editNumber = findViewById(R.id.editNumber);
+        editAddress = findViewById(R.id.editAddress);
+        txtRole = findViewById(R.id.txtRole);
+        txtRole.setText(RoleUser);
         setLayoutUser(idUser);
+
+        btnEditInformation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if(btnEditInformation.getText() == "Cập nhập"){
+                    editFullName.setEnabled(false);
+                    editEmail.setEnabled(false);
+                    editNumber.setEnabled(false);
+                    editAddress.setEnabled(false);
+                    updateAccout(idUser);
+                    btnEditInformation.setText("Sửa thông tin");
+
+                }
+                else
+                {
+                    editFullName.setEnabled(true);
+                    editEmail.setEnabled(true);
+                    editNumber.setEnabled(true);
+                    editAddress.setEnabled(true);
+                    btnEditInformation.setText("Cập nhập");
+                }
+            }
+        });
 
 
     }
     public void setLayoutUser(int idUser){
-        Account account = accountHelper.getAccount(1);
-        EditText editLoginName = findViewById(R.id.editLoginName);
-        EditText editFullName = findViewById(R.id.editFullName);
-        EditText editEmail = findViewById(R.id.editEmail);
-        EditText editNumber = findViewById(R.id.editNumber);
-        EditText editAddress = findViewById(R.id.editAddress);
+        Account account = accountHelper.getAccount(idUser);
+
 
         editLoginName.setText(account.getUserName());
         editFullName.setText(account.getFullName());
@@ -36,5 +77,16 @@ public class PersonalInformation extends AppCompatActivity {
         editAddress.setText(account.getAddress());
 
     }
+    public void updateAccout(int idUser){
+        Account account = accountHelper.getAccount(idUser);
+
+        account.setFullName(editFullName.getText().toString());
+        account.setEmail(editEmail.getText().toString());
+        account.setPhone(editNumber.getText().toString());
+        account.setAddress(editAddress.getText().toString());
+        accountHelper.updateAccount(account);
+
+    }
+
 
 }
