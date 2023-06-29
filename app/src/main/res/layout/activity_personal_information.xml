@@ -175,8 +175,8 @@
 
                             android:textStyle="bold"
                             android:textColor="@color/black"
-                            android:inputType="none"
-                            android:text="TextView" />
+                            android:enabled="false"
+                            android:text="TextView1" />
 
                         <EditText
                             android:id="@+id/editFullName"
@@ -185,6 +185,8 @@
                             android:textSize="20dp"
                             android:layout_marginTop="10dp"
                             android:textStyle="bold"
+                            android:enabled="false"
+
                             android:textColor="@color/black"
 
                             android:text="TextView" />
@@ -196,6 +198,8 @@
                             android:layout_marginTop="10dp"
                             android:text="TextView"
                             android:textSize="20dp"
+                            android:enabled="false"
+
                             android:textColor="@color/black"
 
                             android:textStyle="bold" />
@@ -207,6 +211,8 @@
                             android:textSize="20dp"
                             android:layout_marginTop="10dp"
                             android:textStyle="bold"
+                            android:enabled="false"
+
                             android:textColor="@color/black"
 
                             android:text="TextView" />
@@ -216,6 +222,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
+                            android:enabled="false"
 
                             android:layout_marginTop="10dp"
                             android:textStyle="bold"
@@ -306,6 +313,13 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnEditInformation"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="Sửa thông tin" />
 
 
             </LinearLayout>

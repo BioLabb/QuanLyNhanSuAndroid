@@ -104,7 +104,14 @@ public class AccountHelper {
         values.put("address", account.getAddress());
         values.put("room_id",account.getRoomID());
 
-        int result =  Data.update(TABLE_ACCOUNT,values,null,null);
+        String whereClause = "account_id = ?";
+        String[] whereArgs = {String.valueOf(account.getAccountID())};
+
+
+
+        int result =  Data.update(TABLE_ACCOUNT,values,whereClause, whereArgs);
+
+
         if(result < 0)
             return -1;
         return 1;
