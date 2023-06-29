@@ -1,11 +1,14 @@
 package com.example.quanlynhansu;
 
+import static com.example.quanlynhansu.MainActivity.RoleUser;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
@@ -18,6 +21,7 @@ public class PersonalInformation extends AppCompatActivity {
     EditText editEmail;
     EditText editNumber ;
     EditText editAddress ;
+    TextView txtRole;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +35,8 @@ public class PersonalInformation extends AppCompatActivity {
         editEmail = findViewById(R.id.editEmail);
         editNumber = findViewById(R.id.editNumber);
         editAddress = findViewById(R.id.editAddress);
-
+        txtRole = findViewById(R.id.txtRole);
+        txtRole.setText(RoleUser);
         setLayoutUser(idUser);
 
         btnEditInformation.setOnClickListener(new View.OnClickListener() {
