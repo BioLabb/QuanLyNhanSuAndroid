@@ -136,6 +136,12 @@ public class ExampleInstrumentedTest {
 
         assertEquals( accountHelper.insertAccount(account),1);
     }
+    public void getAllAccount(){
+        AccountHelper accountHelper = new AccountHelper(appContext);
+        accountHelper.getAllAccounts();
+    }
+
+
 
 
 }
