@@ -1,5 +1,7 @@
 package com.example.quanlynhansu.object;
 
+import android.database.sqlite.SQLiteDatabase;
+
 public class Account {
 
     private int accountID;
@@ -22,8 +24,18 @@ public class Account {
         this.address = address;
         this.roomID = roomID;
     }
+    public Account(  String userName, String passWord, String fullName, String email, String phone, String address,int roomID) {
 
-    public Account(int roomID, String userName, String passWord, String fullName, String email) {
+        this.userName = userName;
+        this.passWord = passWord;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.roomID = roomID;
+    }
+
+    public Account( String userName, String passWord, String fullName, String email,int roomID) {
         this.roomID = roomID;
         this.userName = userName;
         this.passWord = passWord;
