@@ -27,7 +27,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+
                 android:textColor="@color/white"
                 android:text="Đăng ký nghỉ phép"
                 android:textSize="25dp" />
@@ -133,7 +133,7 @@
                     android:text="Lý do xin nghỉ" />
 
                 <EditText
-                    android:id="@+id/textarea"
+                    android:id="@+id/editReason"
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
 
                 <Button
                     android:layout_margin="20dp"
-                    android:id="@+id/button"
+                    android:id="@+id/btnSubmit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Gửi" />
@@ -164,6 +164,7 @@
                     android:text="Lịch sử xin nghỉ phép" />
 
                 <ListView
+                    android:id="@+id/listLeave"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

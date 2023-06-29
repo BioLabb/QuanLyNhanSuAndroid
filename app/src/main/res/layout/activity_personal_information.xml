@@ -26,7 +26,6 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:text="Thông tin cá nhân"
                 android:textSize="25dp" />
@@ -168,61 +167,57 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textView14"
+                        <EditText
+                            android:id="@+id/editLoginName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
-                            android:layout_marginBottom="15dp"
-                            android:layout_marginTop="15dp"
+
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:inputType="none"
+                            android:text="TextView" />
+
+                        <EditText
+                            android:id="@+id/editFullName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:layout_marginTop="10dp"
                             android:textStyle="bold"
                             android:textColor="@color/black"
 
                             android:text="TextView" />
 
-                        <TextView
-                            android:id="@+id/textView17"
+                        <EditText
+                            android:id="@+id/editEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="20dp"
-                            android:layout_marginBottom="15dp"
-                            android:layout_marginTop="15dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-
-                            android:text="TextView" />
-
-                        <TextView
-                            android:id="@+id/textView15"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="10dp"
                             android:text="TextView"
                             android:textSize="20dp"
                             android:textColor="@color/black"
 
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/textView13"
+                        <EditText
+                            android:id="@+id/editNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
-                            android:layout_marginBottom="15dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="10dp"
                             android:textStyle="bold"
                             android:textColor="@color/black"
 
                             android:text="TextView" />
 
-                        <TextView
-                            android:id="@+id/textView16"
+                        <EditText
+                            android:id="@+id/editAddress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
-                            android:layout_marginBottom="15dp"
-                            android:layout_marginTop="15dp"
+
+                            android:layout_marginTop="10dp"
                             android:textStyle="bold"
                             android:textColor="@color/black"
 
