@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.quanlynhansu.object.Role;
 import com.example.quanlynhansu.object.Room;
 
 import java.util.ArrayList;
@@ -23,6 +24,16 @@ public class RoomHelper{
         // tuong tac voi du lie
         // cho ghi va do
         Database = q.getWritableDatabase();
+        onCreate(Database);
+    }
+    public void onCreate(SQLiteDatabase database){
+        //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
+        if (!q.isTableInitialized(database, TABLE_ROOM))
+        {
+            insertRoom("Phòng makerting",40);
+            insertRoom("Phòng IT", 35);
+            insertRoom("Phòng quản lý",10);
+        }
     }
     public int insertRoom(String name, int number ){
         ContentValues values = new ContentValues();

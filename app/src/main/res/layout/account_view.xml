@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_marginBottom="5dp"
-
+    android:background="@color/white"
 
     android:layout_height="match_parent">
 
@@ -87,7 +87,7 @@
                     android:id="@+id/accountViewPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginRight="15dp"
                     android:text="0328089720" />
             </LinearLayout>
 
