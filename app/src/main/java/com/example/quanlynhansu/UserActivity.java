@@ -15,14 +15,6 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
 
-//        Room room = new Room(7,"test",1234);
-//        RoomHelper roomHelper = new RoomHelper(this);
-//
-//        roomHelper.insertRoom(room);
-//
-//        Room r1 = roomHelper.getRoom(10);
-
-//        System.out.println("id: "+ r1.getRoomID() + " , name: " + r1.getName());
 
     }
 }
