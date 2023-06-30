@@ -144,8 +144,10 @@ public class PersonalInformation extends AppCompatActivity {
                     editEmail.setEnabled(true);
                     editNumber.setEnabled(true);
                     editAddress.setEnabled(true);
-                    spinnerRole.setEnabled(true);
-                    spinnerRoom.setEnabled(true);
+                    if(!roleDelete.equals("User")) {
+                        spinnerRole.setEnabled(true);
+                        spinnerRoom.setEnabled(true);
+                    }
                     btnEditInformation.setText("Cập nhập");
                     txtLable.setText("Sửa thông tin cá nhân");
 
@@ -156,9 +158,10 @@ public class PersonalInformation extends AppCompatActivity {
 
     }
     public void setLayoutUser(int idUser){
+        System.out.println("setlayout");
         Account account = accountHelper.getAccount(idUser);
        String role = searchRoleUser(idUser);
-
+        System.out.println(account);
         editLoginName.setText(account.getUserName());
         editFullName.setText(account.getFullName());
         editEmail.setText(account.getEmail());
@@ -269,7 +272,11 @@ public class PersonalInformation extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Thực hiện lệnh xóa ở đây
-                        accountHelper.removeAccount(idUser);
+                        System.out.println("sdf");
+                        System.out.println(idUser);
+
+
+                        accountHelper.removeAccountChien(idUser);
                     }
                 });
 
@@ -311,7 +318,7 @@ public class PersonalInformation extends AppCompatActivity {
         roleAccountHelper = new RoleAccountHelper(PersonalInformation.this);
         roleHelper = new RoleHelper(PersonalInformation.this);
         List<RoleAccount> roleAccountList = roleAccountHelper.getAllRoleAccounts();
-        List<Role> roles =  roleHelper.getAllRoles();
+
         for(RoleAccount roleAccount: roleAccountList){
             if(roleAccount.getAccountId() == idUser)
                 return roleAccount;

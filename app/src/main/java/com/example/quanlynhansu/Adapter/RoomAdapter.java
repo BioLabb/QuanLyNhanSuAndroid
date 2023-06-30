@@ -43,4 +43,10 @@ public class RoomAdapter extends ArrayAdapter<Room> {
 
         return convertView;
     }
+    // Phương thức để cập nhật danh sách dữ liệu
+    public void updateData(List<Room> newData) {
+        clear(); // Xóa dữ liệu hiện tại trong Adapter
+        addAll(newData); // Thêm dữ liệu mới vào Adapter
+        notifyDataSetChanged(); // Thông báo cập nhật giao diện
+    }
 }

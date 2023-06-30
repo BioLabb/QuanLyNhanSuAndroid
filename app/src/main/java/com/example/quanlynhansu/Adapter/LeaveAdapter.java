@@ -46,5 +46,11 @@ public class LeaveAdapter extends ArrayAdapter<Leave> {
 
         return convertView;
     }
+    // Phương thức để cập nhật danh sách dữ liệu
+    public void updateData(List<Leave> newData) {
+        clear(); // Xóa dữ liệu hiện tại trong Adapter
+        addAll(newData); // Thêm dữ liệu mới vào Adapter
+        notifyDataSetChanged(); // Thông báo cập nhật giao diện
+    }
 }
 

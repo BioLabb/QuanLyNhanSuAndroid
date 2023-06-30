@@ -57,6 +57,12 @@ public class AccountAdapter extends ArrayAdapter<Account> {
 
         return convertView;
     }
+    // Phương thức để cập nhật danh sách dữ liệu
+    public void updateData(List<Account> newData) {
+        clear(); // Xóa dữ liệu hiện tại trong Adapter
+        addAll(newData); // Thêm dữ liệu mới vào Adapter
+        notifyDataSetChanged(); // Thông báo cập nhật giao diện
+    }
     public String searchRoleUser(int idUser){
         List<RoleAccount> roleAccountList = roleAccountHelper.getAllRoleAccounts();
         List<Role> roles =  roleHelper.getAllRoles();

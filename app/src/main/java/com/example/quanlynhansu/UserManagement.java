@@ -212,11 +212,14 @@ public class UserManagement extends AppCompatActivity {
             accountListNew = accountList;
         }
         else
-        for (Account item : accountList) {
-            if (item.getRoomID() == room.getRoomID()) {
-                accountListNew.add(item);
+        {
+            for (Account item : accountList) {
+                if (item.getRoomID() == room.getRoomID()) {
+                    accountListNew.add(item);
+                }
             }
         }
+
         if(role.getRoleName().equals("Tất cả")){
             adapterNew = new AccountAdapter(this,accountListNew );
 
@@ -278,6 +281,16 @@ public class UserManagement extends AppCompatActivity {
             spinnerRoom.setSelection(0); // Đặt vị trí đầu tiên làm giá trị mặc định
 
 
+    }
+    //Cập nhập lại listview khi onback
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Gọi lại hàm lấy dữ liệu từ CSDL (hoặc từ nguồn dữ liệu khác)
+        accountList = accountHelper.getAllAccountsChien();
+        //khoi tao vaf gan adapter
+        adapter = new AccountAdapter(this,accountList );
+        listUser.setAdapter(adapter);
     }
 
 

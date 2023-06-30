@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ListView Lview;
     RoleAccountHelper roleAccountHelper;
     RoleHelper roleHelper;
-    final int accountID = 2;
+    final int accountID = 1;
     final String roleDelete = "User";
     // nếu là người dùng thì chuyển thành User
     private RoomAdapter adapter;
@@ -63,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                goToSecondActivity(view,LeaveActivity.class);
-                goToSecondActivity(view,UserManagement.class);
+//                goToSecondActivity(view,UserManagement.class);
 //----
-                // Tạo Intent để chuyển đến Activity mới và truyền thông tin KHi đăng nhập xong chạp hàm này
-//                Intent intent = new Intent(MainActivity.this, PersonalInformation.class);
-//                intent.putExtra("accountID", accountID);
-//                intent.putExtra("roleDelete",roleDelete);
-//                startActivity(intent);
+//                 Tạo Intent để chuyển đến Activity mới và truyền thông tin KHi đăng nhập xong chạp hàm này
+                Intent intent = new Intent(MainActivity.this, PersonalInformation.class);
+                intent.putExtra("accountID", accountID);
+                intent.putExtra("roleDelete",roleDelete);
+                startActivity(intent);
 
 
 

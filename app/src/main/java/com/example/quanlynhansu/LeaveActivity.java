@@ -27,6 +27,7 @@ public class LeaveActivity extends AppCompatActivity {
 
     ListView Lview;
     private LeaveAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,6 +166,7 @@ public class LeaveActivity extends AppCompatActivity {
                 System.out.println(editEndDate.getText());
                 System.out.println(editStartDate.getText());
 
+                adapter.updateData(leaveHelper.getAllLeavesReverse());
 
             }
         });

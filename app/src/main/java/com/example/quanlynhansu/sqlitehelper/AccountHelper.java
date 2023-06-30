@@ -29,6 +29,7 @@ public class AccountHelper {
         //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
         if (!dbHelper.isTableInitialized(database, TABLE_ACCOUNT))
         {
+            System.out.println("Tạo bảng");
             insertAccount(new Account("use1","12345","vanchien","email11","01424234","adress",1));
             insertAccount(new Account("useName2","12345","HaiMai","email12","01424234","adress",2));
             insertAccount(new Account("useName3","12345","KimThien","email13","01424234","adress",3));
@@ -135,6 +136,13 @@ public class AccountHelper {
         int result = Data.delete(TABLE_ACCOUNT,"account_id + ?",new String[]{String.valueOf(id)});
         Data.close();
         if(result == 1)
+            return 1;
+        return 0;
+    }
+
+    public int removeAccountChien(int id) {
+        int result = Data.delete(TABLE_ACCOUNT, "account_id = ?", new String[]{String.valueOf(id)});
+        if (result == 1)
             return 1;
         return 0;
     }
