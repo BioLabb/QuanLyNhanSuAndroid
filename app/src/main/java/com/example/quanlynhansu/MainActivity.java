@@ -16,10 +16,12 @@ import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.RoomHelper;
 import com.example.quanlynhansu.sqlitehelper.SQLiteHelper;
 import com.example.quanlynhansu.store.AccountStore;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edtUser, edtPass;
     Button btnSign;
+
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +32,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edtUser = (EditText) findViewById(R.id.inputTextUser);
         edtPass= (EditText) findViewById(R.id.inputTextPass);
         btnSign = (Button) findViewById(R.id.btnSign);
+
         //init
         context = MainActivity.this;
         SQLiteHelper sqLiteHelper = new SQLiteHelper(context);
 
-        // room
-        Room room = new Room(10,"test",1234);
-        RoomHelper roomHelper = new RoomHelper(this);
-        // account
-        Account account = new Account("admin","1234567","fullName","@mail.com","012343546","address",10);
-        AccountHelper AccountHelper = new AccountHelper(context);
+
 
         //set Onclick
         btnSign.setOnClickListener(this);
     }
 
+    // bắt sự kiên onclick các Button
     @Override
     public void onClick(View v) {
         if(v.getId() == btnSign.getId()) {
@@ -88,12 +87,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
    }
 
 
+   // kiểm tra validData trước khi login
    private Boolean confirmInput(){
         if(!validUser() || !validPass()){
             return false;
         }else
             return true;
    }
+
+   // kiểm tra user có trong data hay không
+    // nếu có cho đăng nhập và lưu thông tin account vào static
     private Boolean isUser(){
         if(confirmInput()){
             AccountHelper accountHelper = new AccountHelper(context);
