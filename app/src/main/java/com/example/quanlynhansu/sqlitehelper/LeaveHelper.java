@@ -78,6 +78,29 @@ public class LeaveHelper {
 
         return leaveList;
     }
+    public List<Leave> getAllLeavesReverse() {
+        List<Leave> leaveList = new ArrayList<>();
+        String query = String.format("SELECT * FROM %s", TABLE_LEAVE);
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.moveToLast()) {
+            do {
+                Leave leave = new Leave(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getInt(5)
+                );
+                leaveList.add(leave);
+            } while (cursor.moveToPrevious());
+        }
+
+        cursor.close();
+        return leaveList;
+    }
+
 
     public int updateLeave(Leave leave) {
         ContentValues values = new ContentValues();

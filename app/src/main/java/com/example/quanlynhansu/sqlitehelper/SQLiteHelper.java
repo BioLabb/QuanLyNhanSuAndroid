@@ -102,8 +102,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String CREATE_ACCOUNT = "CREATE TABLE Account (\n" +
             "    account_id INTEGER PRIMARY KEY AUTOINCREMENT\n" +
             "                       NOT NULL,\n" +
-            "    username   TEXT    NOT NULL,\n" +
-            "    password   TEXT    NOT NULL UNIQUE ,\n" +
+            "    username   TEXT    NOT NULL UNIQUE,\n" +
+            "    password   TEXT    NOT NULL  ,\n" +
             "    full_name  TEXT    NOT NULL,\n" +
             "    email      TEXT    NOT NULL,\n" +
             "    phone      TEXT,\n" +

@@ -23,6 +23,16 @@ public class RoleHelper {
         this.context = context;
         dbHelper = new SQL(context);
         database = dbHelper.getWritableDatabase();
+        onCreate(database);
+    }
+    public void onCreate(SQLiteDatabase database){
+        //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
+        if (!dbHelper.isTableInitialized(database, TABLE_ROLE))
+        {
+            insertRole(new Role("Admin"));
+            insertRole(new Role("User"));
+            insertRole(new Role("Management"));
+        }
     }
 
     public int insertRole(Role role) {

@@ -3,9 +3,12 @@ package com.example.quanlynhansu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.object.Room;
 import com.example.quanlynhansu.sqlitehelper.RoomHelper;
+import com.example.quanlynhansu.store.AccountStore;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -14,15 +17,10 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+        Account userName = AccountStore.getUser();
+        Toast toast = Toast.makeText(this,"Chao"+ userName.getUserName(),Toast.LENGTH_SHORT);
+        toast.show();
 
-//        Room room = new Room(7,"test",1234);
-//        RoomHelper roomHelper = new RoomHelper(this);
-//
-//        roomHelper.insertRoom(room);
-//
-//        Room r1 = roomHelper.getRoom(10);
-
-//        System.out.println("id: "+ r1.getRoomID() + " , name: " + r1.getName());
 
     }
 }

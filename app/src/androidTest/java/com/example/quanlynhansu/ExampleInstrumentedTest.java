@@ -33,7 +33,7 @@ public class ExampleInstrumentedTest {
     final RoomHelper roomHelper = new RoomHelper(appContext);
     final AttendanceHelper attendanceHelper = new AttendanceHelper(appContext);
     final RoleAccountHelper roleAccountHelper = new RoleAccountHelper(appContext);
-
+    final LeaveHelper leaveHelper = new LeaveHelper(appContext);
     @Test
     public void useAppContext() {
         // Context of the app under test.
@@ -106,8 +106,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void testDate(){
         Leave leave = new Leave("12/12/2023","12/12/2024","khu vuc","status",123);
-        LeaveHelper helper = new LeaveHelper(appContext);
-        assertEquals(helper.insertLeave(leave),1);
+
+        assertEquals(leaveHelper.insertLeave(leave),1);
     }
     //nên chạy addAttendance nhiều lần để tránh bị lỗi khi chạy các hàm khác
     @Test
@@ -122,11 +122,26 @@ public class ExampleInstrumentedTest {
     public void addAccount(){
 //        Account account = new Account(1,"useName","12345","sinhTien","email");
 
-        Account account = new Account(2,1,"useName","12345","sinhTien","email","01424234","adress");
+        Account account = new Account(2,"useName","12345","sinhTien","email","01424234","adress",1);
         AccountHelper accountHelper = new AccountHelper(appContext);
 //        accountHelper.insertAccount(account);
 
         Account account1 = accountHelper.getAccount(4);
         assertEquals(account1.getAccountID(),null );
     }
+    public void addAcountUser(){
+        Account account = new Account(2,"useName","12345","sinhTien","email","01424234","adress",1);
+
+        AccountHelper accountHelper = new AccountHelper(appContext);
+
+        assertEquals( accountHelper.insertAccount(account),1);
+    }
+    public void getAllAccount(){
+        AccountHelper accountHelper = new AccountHelper(appContext);
+        accountHelper.getAllAccounts();
+    }
+
+
+
+
 }

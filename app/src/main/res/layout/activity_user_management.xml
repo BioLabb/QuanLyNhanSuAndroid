@@ -8,12 +8,13 @@
     tools:context=".UserManagement">
 
     <LinearLayout
+        android:id="@+id/onBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:gravity="center"
         android:background="#2E6AEE"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <LinearLayout
             android:id="@+id/l"
@@ -27,16 +28,17 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:text="Quản lý tài khoản"
-                android:textSize="25dp" />
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-45dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="-45dp"
             android:orientation="horizontal">
 
             <TextView
@@ -45,35 +47,167 @@
                 android:layout_height="wrap_content"
                 android:text="&lt;"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="40dp" />
+                android:textSize="40dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:padding="@dimen/text_content"
+        android:orientation="vertical"
         android:background="#F8F7FC"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Thêm tài khoản mới" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <SearchView
+                    android:id="@+id/searchAccount"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius"
+                    android:gravity="top"
+                    android:queryHint="Nhập từ khoá tìm kiếm...">
+
+
+                </SearchView>
+                <Button
+                    android:id="@+id/searchCondition"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+
+                    android:layout_weight="1"
+                    android:text="Lọc" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vai trò" />
+
+                    <Spinner
+                        android:id="@+id/spinnerRole"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+
+
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Phòng" />
+
+                    <Spinner
+                        android:id="@+id/spinnerRoom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/text_content"
+            android:background="#F8F7FC"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView22"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Danh sách các tài khoản" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="4"
+                        android:text="Danh sách các tài khoản"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <ImageView
+                        android:id="@+id/imgSetting"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:layout_marginRight="10dp"
+                        app:srcCompat="@drawable/setting" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtLableSetting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Theo tên" />
+                </LinearLayout>
+                <ListView
+                    android:id="@+id/listUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
 
