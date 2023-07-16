@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v.getId() == btnSign.getId()) {
+            AccountHelper accountHelper = new AccountHelper(this);
+
             if(isUser()){
                 Intent intent = new Intent(this, UserActivity.class);
                 startActivity(intent);

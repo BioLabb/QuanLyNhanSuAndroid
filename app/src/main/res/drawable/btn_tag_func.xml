@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
 
-    <stroke
-        android:color="@color/blue_theme"
-        />
-    <corners
-        android:radius="@dimen/box_width"/>
+            <solid android:color="@color/blue_theme" />
+            <padding
+                android:left="@dimen/padding_button"
+                android:right="@dimen/padding_button"
+                android:bottom="@dimen/padding_button"
+                android:top="@dimen/padding_button"/>
 
-</shape>
+            <stroke android:color="@color/blue_theme" />
+
+            <corners android:radius="10dp"/>
+
+        </shape>
+    </item>
+
+</selector>
