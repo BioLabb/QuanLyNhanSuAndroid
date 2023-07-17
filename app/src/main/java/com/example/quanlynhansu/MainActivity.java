@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // init View
+        //init View
         edtUser = (EditText) findViewById(R.id.inputTextUser);
-        edtPass= (EditText) findViewById(R.id.inputTextPass);
+        edtPass = (EditText) findViewById(R.id.inputTextPass);
         btnSign = (Button) findViewById(R.id.btnSign);
         //init
         context = MainActivity.this;
@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        if(true){
+            Intent intent = new Intent(this, RoomActivity.class);
+            startActivity(intent);
+        } else
         if(v.getId() == btnSign.getId()) {
             if(isUser()){
                 Intent intent = new Intent(this, UserActivity.class);
