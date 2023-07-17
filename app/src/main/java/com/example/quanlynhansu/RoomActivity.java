@@ -41,11 +41,6 @@ public class RoomActivity extends AppCompatActivity {
         //data khởi tạo ban đầu
         arrRoom = (ArrayList<Room>) roomHelper.getAllRooms();
 
-//        arrRoom = new ArrayList<Room>();
-//        arrRoom.add(new Room("hihi1",1));
-//        arrRoom.add(new Room("hihi2",1));
-//        arrRoom.add(new Room("hihi3",1));
-        //arrRoom = (ArrayList<Room>) roomHelper.getAllRooms();
         RoomAdapter adapter = new RoomAdapter(
                 RoomActivity.this,
                 R.layout.room_view,
