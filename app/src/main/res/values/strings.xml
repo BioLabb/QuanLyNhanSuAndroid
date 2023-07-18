@@ -17,7 +17,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-<!--    String use fragment home-->
+    <!--    String use fragment home-->
     <string name="Bao_cao_va_thong_ke">Báo cáo và thống Kê</string>
     <string name="func">Chức năng</string>
     <string name="quan_ly_phong_ban">Quản lý phòng ban</string>
@@ -28,6 +28,7 @@
     <string name="tong_ngay_nghi_phep">Tổng ngày nghỉ phép</string>
     <string name="tong_so_cong">Tổng số công</string>
     <string name="tong_so_luong">Tổng số lương</string>
+    <string name="dang_ky_nghi_phep">Đăng ký nghỉ phép</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

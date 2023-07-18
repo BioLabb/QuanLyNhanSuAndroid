@@ -11,12 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.quanlynhansu.object.Account;
-import com.example.quanlynhansu.object.Room;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
-import com.example.quanlynhansu.sqlitehelper.RoomHelper;
 import com.example.quanlynhansu.sqlitehelper.SQLiteHelper;
 import com.example.quanlynhansu.store.AccountStore;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edtUser, edtPass;
@@ -46,11 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // bắt sự kiên onclick các Button
     @Override
     public void onClick(View v) {
+
+        // khi button sign được click
         if(v.getId() == btnSign.getId()) {
             AccountHelper accountHelper = new AccountHelper(this);
-
+            // kiểm tra user có tồn tại hay ko
+            // nếu phải chuyển sang activity khác
             if(isUser()){
-                Intent intent = new Intent(this, UserActivity.class);
+                Intent intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);
             }else {
                 Toast.makeText(this,"incorrect user or password",Toast.LENGTH_SHORT).show();

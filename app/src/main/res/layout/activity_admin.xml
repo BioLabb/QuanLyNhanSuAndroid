@@ -16,7 +16,7 @@
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_bottom_bar"
-        app:menu="@menu/bottom_nav_user"
+        app:menu="@menu/bottom_bar_admin"
         android:background="@drawable/custom_bottom_bar"
         app:itemTextColor="@drawable/fill_item"
         app:itemIconTint="@drawable/fill_item"
