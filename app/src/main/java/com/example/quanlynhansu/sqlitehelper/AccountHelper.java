@@ -14,6 +14,7 @@ import java.util.List;
 public class AccountHelper {
     private Context context;
     private final String TABLE_ACCOUNT = "Account";
+    private final String ACCOUNT_ID = "account_id";
     SQLiteHelper sqLiteHelper;
     private SQL dbHelper;
     SQLiteDatabase Data;
@@ -27,8 +28,11 @@ public class AccountHelper {
 
     public void onCreate(SQLiteDatabase database){
         //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
+
+
         if (!dbHelper.isTableInitialized(database, TABLE_ACCOUNT))
         {
+            insertAccount(new Account("admin","12345","vanchien","email11","01424234","adress",1));
             insertAccount(new Account("use1","12345","vanchien","email11","01424234","adress",1));
             insertAccount(new Account("useName2","12345","HaiMai","email12","01424234","adress",2));
             insertAccount(new Account("useName3","12345","KimThien","email13","01424234","adress",3));
@@ -183,6 +187,19 @@ public class AccountHelper {
         if(result < 0)
             return -1;
         return 1;
+    }
+
+
+    // return the number of account
+    public int getCountAccount(){
+        String sqlCount = String.format("SELECT COUNT(%s) FROM %s",ACCOUNT_ID,TABLE_ACCOUNT);
+
+        // truy vấn dữ liệu từ data vao cursor
+        Cursor cursor = Data.rawQuery(sqlCount,null);
+        cursor.moveToFirst();
+        int countAccount = cursor.getInt(0);
+
+        return countAccount;
     }
 
 }

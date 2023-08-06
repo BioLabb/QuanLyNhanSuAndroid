@@ -13,7 +13,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     //old version
 //    public static final int DB_VERSION = 1;
     // new version
-    public static final int DB_VERSION = 3;
+    public static final int DB_VERSION = 5;
 
      //SQL INIT TABLE
     // create bonus
