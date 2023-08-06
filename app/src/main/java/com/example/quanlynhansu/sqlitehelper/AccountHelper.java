@@ -28,8 +28,11 @@ public class AccountHelper {
 
     public void onCreate(SQLiteDatabase database){
         //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
+
+
         if (!dbHelper.isTableInitialized(database, TABLE_ACCOUNT))
         {
+            insertAccount(new Account("admin","12345","vanchien","email11","01424234","adress",1));
             insertAccount(new Account("use1","12345","vanchien","email11","01424234","adress",1));
             insertAccount(new Account("useName2","12345","HaiMai","email12","01424234","adress",2));
             insertAccount(new Account("useName3","12345","KimThien","email13","01424234","adress",3));

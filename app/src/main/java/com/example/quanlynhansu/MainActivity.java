@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
+import com.example.quanlynhansu.sqlitehelper.RoleAccountHelper;
+import com.example.quanlynhansu.sqlitehelper.RoleHelper;
 import com.example.quanlynhansu.sqlitehelper.SQLiteHelper;
 import com.example.quanlynhansu.store.AccountStore;
 
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        changeActivity(getApplicationContext(), UserActivity.class);
+
         // init View
         edtUser = (EditText) findViewById(R.id.inputTextUser);
         edtPass= (EditText) findViewById(R.id.inputTextPass);
@@ -33,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //init
         context = MainActivity.this;
         SQLiteHelper sqLiteHelper = new SQLiteHelper(context);
-
-
 
         //set Onclick
         btnSign.setOnClickListener(this);
@@ -50,8 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // kiểm tra user có tồn tại hay ko
             // nếu phải chuyển sang activity khác
             if(isUser()){
-                Intent intent = new Intent(this, AdminActivity.class);
-                startActivity(intent);
+                if(isAdmin()){
+                    changeActivity(context, AdminActivity.class);
+                }else{
+                    changeActivity(context, UserActivity.class);
+                }
             }else {
                 Toast.makeText(this,"incorrect user or password",Toast.LENGTH_SHORT).show();
             }
@@ -116,4 +121,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
+    private Boolean isAdmin(){
+        RoleHelper roleHelper = new RoleHelper(context);
+
+        return roleHelper.isAdmin(AccountStore.getUser().getAccountID()) ? true:false;
+    }
+
+    private void changeActivity(Context context, Class<?> activity){
+        Intent intent = new Intent(context,activity);
+        startActivity(intent);
+    }
 }

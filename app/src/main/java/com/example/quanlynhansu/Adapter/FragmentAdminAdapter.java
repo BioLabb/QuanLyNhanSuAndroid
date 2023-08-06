@@ -11,16 +11,13 @@ import com.example.quanlynhansu.fragment.SearchFragment;
 import com.example.quanlynhansu.fragment.AccountFragment;
 import com.example.quanlynhansu.fragment.HomeFragment;
 
-public class FragmentUserAdapter extends FragmentStateAdapter{
+public class FragmentAdminAdapter extends FragmentStateAdapter{
     private final int CountFragment = 3;
 
-    public FragmentUserAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    public FragmentAdminAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
 
-    public FragmentUserAdapter(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
-    }
 
 
     @NonNull

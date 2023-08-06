@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.quanlynhansu.Adapter.FragmentUserAdapter;
+import com.example.quanlynhansu.Adapter.FragmentAdminAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -43,7 +43,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationBarVie
                 }
             }
         });
-
         bottomNavigationView.setOnItemSelectedListener(this);
     }
 
@@ -72,12 +71,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationBarVie
 
     private void init(){
         context = this;
-
         viewPager = (ViewPager2) findViewById(R.id.view_pager);
-
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
-        FragmentUserAdapter fragmentUserAdapter = new FragmentUserAdapter(getSupportFragmentManager(),getLifecycle());
-        viewPager.setAdapter(fragmentUserAdapter);
+
+        FragmentAdminAdapter fragmentAdminAdapter = new FragmentAdminAdapter(getSupportFragmentManager(),getLifecycle());
+        viewPager.setAdapter(fragmentAdminAdapter);
 
     }
 }

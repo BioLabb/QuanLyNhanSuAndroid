@@ -14,6 +14,9 @@ import java.util.List;
 
 public class RoleHelper {
     private Context context;
+    private final String ADMIN = "admin";
+    private final String USER = "user";
+
     public final static String TABLE_ROLE = "Role";
 
     private SQL dbHelper;
@@ -102,6 +105,21 @@ public class RoleHelper {
             return 0; // Xóa thất bại
         }
         return 1; // Xóa thành công
+    }
+
+    //
+    public Boolean isAdmin(int AccountID){
+        String sql = String.format("SELECT ROLE.role_name\n" +
+                "FROM ACCOUNT, ROLE, ROLE_ACCOUNT\n" +
+                "WHERE ACCOUNT.ACCOUNT_ID = ROLE_ACCOUNT.account_id AND ACCOUNT.ACCOUNT_ID = %d AND ROLE.role_id = ROLE_ACCOUNT.role_id",AccountID);
+
+        Cursor cursor = database.rawQuery(sql,null);
+        if(cursor.moveToFirst() == false)
+            return false;
+
+        String role = cursor.getString(0);
+        return role.equalsIgnoreCase(ADMIN) ? true:false;
+
     }
 }
 
