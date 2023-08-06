@@ -15,6 +15,9 @@
         <activity
             android:name=".UserActivity"
             android:exported="false" />
+      <activity
+            android:name=".RoomActivity"
+            android:exported="false" />
         <activity
             android:name=".UserManagement"
             android:exported="false" />

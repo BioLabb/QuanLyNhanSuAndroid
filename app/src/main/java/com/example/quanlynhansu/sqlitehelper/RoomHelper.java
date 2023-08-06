@@ -116,4 +116,19 @@ public class RoomHelper{
         return 1; // Cập nhật thành công
     }
 
+    public int updateRoom(Room room ,int id) {
+        ContentValues values = new ContentValues();
+        values.put("name", room.getName());
+        values.put("number", room.getNumber());
+
+        String whereClause = "room_id = ?";
+        String[] whereArgs = {String.valueOf(id)};
+
+        int rowsAffected = Database.update(TABLE_ROOM, values, whereClause, whereArgs);
+        if (rowsAffected < 0) {
+            return 0; // Cập nhật thất bại
+        }
+        return 1; // Cập nhật thành công
+    }
+
 }

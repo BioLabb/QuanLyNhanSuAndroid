@@ -15,7 +15,7 @@ public class Salary {
         this.setAccount_id(account_id);
     }
 
-    public Salary(double amount, Calendar date, int account_id){
+    public Salary(double amount, Calendar date, double aDouble, double cursorDouble, double v, int account_id){
         this.setAmount(amount);
         this.setDate(date);
         this.setAccount_id(account_id);
@@ -37,7 +37,7 @@ public class Salary {
         this.amount = amount;
     }
 
-    public Calendar getDate() {
+    public String getDate() {
         return date;
     }
 

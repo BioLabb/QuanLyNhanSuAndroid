@@ -27,11 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        changeActivity(getApplicationContext(), UserActivity.class);
-
-        // init View
+        //init View
         edtUser = (EditText) findViewById(R.id.inputTextUser);
-        edtPass= (EditText) findViewById(R.id.inputTextPass);
+        edtPass = (EditText) findViewById(R.id.inputTextPass);
         btnSign = (Button) findViewById(R.id.btnSign);
 
         //init
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // bắt sự kiên onclick các Button
     @Override
     public void onClick(View v) {
-
+      
         // khi button sign được click
         if(v.getId() == btnSign.getId()) {
             AccountHelper accountHelper = new AccountHelper(this);

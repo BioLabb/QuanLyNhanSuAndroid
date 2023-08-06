@@ -19,7 +19,7 @@ public class RoomAdapter extends ArrayAdapter<Room> {
 
     private List<Room> roomList;
 
-    public RoomAdapter(@NonNull Context context, List<Room> roomList) {
+    public RoomAdapter(@NonNull Context context, int room_view, List<Room> roomList) {
         super(context, 0, roomList);
         this.roomList = roomList;
     }
