@@ -13,14 +13,14 @@ import androidx.annotation.Nullable;
 import com.example.quanlynhansu.R;
 import com.example.quanlynhansu.object.GetSalary;
 import com.example.quanlynhansu.object.Leave;
+import com.example.quanlynhansu.sqlitehelper.AccountHelper;
+import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
 
 import java.util.List;
 
 public class GetSalaryAdapter extends ArrayAdapter<GetSalary> {
     private List<GetSalary> getSalaryList;
-    double bonus = 100 ;
-    double salary = 5000;
-    double sum = 0;
+    double sumSalary;
     public GetSalaryAdapter(@NonNull Context context, int activity_get_salary, List<GetSalary> getSalaryList) {
         super(context, 0,getSalaryList);
         this.getSalaryList = getSalaryList;
@@ -40,8 +40,16 @@ public class GetSalaryAdapter extends ArrayAdapter<GetSalary> {
         TextView tvBonus = convertView.findViewById(R.id.tvBonus);
         TextView tvSumSalary = convertView.findViewById((R.id.tvSumSalary));
 
-        tvUserIdSalary.setText(String.valueOf(getSalary.getAccountID()));
-        tvDateSalary.setText(String.valueOf(getSalary.getDate()));
+        AccountHelper accountHelper = new AccountHelper(this.getContext());
+        AttendanceHelper attendanceHelper = new AttendanceHelper(this.getContext());
+        //cong thuc tinh tong luong = so ngay cham cong * he so luong + thuong
+         sumSalary = attendanceHelper.totalAllAttendance(getSalary.getAccountID())
+                    * getSalary.getSalary()
+                    + getSalary.getBonus();
+        getSalary.setSum(sumSalary);
+
+        tvUserIdSalary.setText(String.valueOf(accountHelper.getAccount(getSalary.getAccountID()).getUserName()));
+        tvDateSalary.setText(String.valueOf(getSalary.getStrDate()));
         tvSalary.setText(String.valueOf(getSalary.getSalary()));
         tvBonus.setText(String.valueOf(getSalary.getBonus()));
         tvSumSalary.setText(String.valueOf(getSalary.getSum()));

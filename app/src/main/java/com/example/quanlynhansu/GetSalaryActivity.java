@@ -43,12 +43,13 @@ public class GetSalaryActivity extends AppCompatActivity {
 //        getSalaryHelper.insert(new GetSalary("1/1/1970", 5000, 100,0,1 ));
 //        getSalaryHelper.insert(new GetSalary("1/1/1970", 1000, 700,0,2 ));
 //        getSalaryHelper.insert(new GetSalary("1/1/1970", 4000, 200,0,3 ));
-//        getSalaryHelper.insert(new GetSalary("1/2/1970", 2000, 300,0,1 ));
-//        getSalaryHelper.insert(new GetSalary("1/2/1970", 7000, 500,0,2 ));
-//        getSalaryHelper.insert(new GetSalary("1/2/1970", 500, 900,0,3));
-//        getSalaryHelper.insert(new GetSalary("1/3/1970", 4000, 600,0,1 ));
-//        getSalaryHelper.insert(new GetSalary("1/3/1970", 3000, 400,0,2 ));
-//        getSalaryHelper.insert(new GetSalary("1/3/1970", 2500, 1000,0,3 ));
+//        getSalaryHelper.insert(new GetSalary("1/2/1970", 2000, 300,0,4 ));
+//        getSalaryHelper.insert(new GetSalary("1/2/1970", 7000, 500,0,5 ));
+//        getSalaryHelper.insert(new GetSalary("1/2/1970", 500, 900,0,6));
+//        getSalaryHelper.insert(new GetSalary("1/3/1970", 4000, 600,0,7 ));
+//        getSalaryHelper.insert(new GetSalary("1/3/1970", 3000, 400,0,8 ));
+//        getSalaryHelper.insert(new GetSalary("1/3/1970", 2500, 1000,0,9 ));
+//        getSalaryHelper.insert(new GetSalary("1/3/1970", 6500, 1500,0,10 ));
 
         AccountHelper accountHelper = new AccountHelper(this);
         arrAccount = (ArrayList<Account>) accountHelper.getAllAccounts();

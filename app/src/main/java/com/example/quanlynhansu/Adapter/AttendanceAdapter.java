@@ -10,9 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.quanlynhansu.AttendanceActivity;
 import com.example.quanlynhansu.R;
-import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.object.Attendance;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
@@ -42,18 +40,19 @@ public class AttendanceAdapter extends ArrayAdapter<Attendance> {
         Attendance attendance = attendanceList.get(position);
         TextView tvNameUser = convertView.findViewById(R.id.tvNameUser);
         TextView tvTotalDate = convertView.findViewById(R.id.tvTotalDate);
+        TextView tvIdUserAtten = convertView.findViewById(R.id.tvIdUserAtten);
 
         AttendanceHelper attendanceHelper = new AttendanceHelper(this.getContext());
         AccountHelper accountHelper = new AccountHelper(this.getContext());
-        //dong nay khi fix dc list account
-        //tvNameUser.setText(String.valueOf(accountHelper.getAccount(attendance.getAccountId()).getFullName()));
-        tvNameUser.setText(String.valueOf(attendance.getAccountId()));
+
+        tvNameUser.setText(String.valueOf(accountHelper.getAccount(attendance.getAccountId()).getUserName()));
+        tvIdUserAtten.setText(String.valueOf(attendance.getAccountId()));
         tvTotalDate.setText(String.valueOf(attendanceHelper.totalAllAttendance(attendance.getAccountId())));
 
         return convertView;
     }
 
-    //filter theo id user
+    //filter theo id user chuc nang tim kiem
     public void filter(String charText){
         charText = charText.toLowerCase(Locale.getDefault());
         attendanceList.clear();

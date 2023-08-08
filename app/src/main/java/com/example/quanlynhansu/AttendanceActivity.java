@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -23,13 +24,15 @@ import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AttendanceActivity extends AppCompatActivity {
     ArrayList<Attendance> arrAttendance;
-    ArrayList<Account> arrAccount;
+    List<Account> arrAccount;
     ListView lvAttendance;
     TextView tvTotalAttendance;
     SearchView searchView;
+    Attendance attendance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +48,21 @@ public class AttendanceActivity extends AppCompatActivity {
         arrAttendance.clear();//tra ve giao dien mang rong
 
         AccountHelper accountHelper = new AccountHelper(AttendanceActivity.this);
-        accountHelper.insertAccount(new Account("huynh1","12345","vanchien","email11","01424234","adress",1));
-        accountHelper.insertAccount(new Account("huynh2","12345","vanchien","email11","01424234","adress",1));
-        accountHelper.insertAccount(new Account("huynh3","12345","vanchien","email11","01424234","adress",1));
-        arrAccount = (ArrayList<Account>) accountHelper.getAllAccounts();
+        arrAccount =  accountHelper.getAllAccounts();
 
-        //duyet qua danh sach acccount de lay ra id user so sanh
+        //test data
+//        accountHelper.insertAccount(new Account("huynh7","12345","vanchien","email11","01424234","adress",1));
+//        accountHelper.insertAccount(new Account("huynh5","12345","vanchien","email11","01424234","adress",1));
+//        accountHelper.insertAccount(new Account("huynh6","12345","vanchien","email11","01424234","adress",1));
+
         for (int i = 0 ; i < arrAccount.size() ; i++){
-            int j = i + 1;
-            //arrAttendance.add(attendanceHelper.getAttendanceByIdUser(arrAccount.get(i).getAccountID()));
-            if(attendanceHelper.getAttendanceByIdUser(j) != null) {
-                arrAttendance.add(attendanceHelper.getAttendanceByIdUser(j));
+            attendance = attendanceHelper.getAttendanceByIdUser(arrAccount.get(i).getAccountID());
+            //duyet xem co tim thay user trong mang cham cong
+            if(attendance != null)
+                arrAttendance.add(attendance);
+            else {
+                attendance = new Attendance(null, arrAccount.get(i).getAccountID());
+                arrAttendance.add(attendance);
             }
         }
 
@@ -69,20 +76,22 @@ public class AttendanceActivity extends AppCompatActivity {
         lvAttendance.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(AttendanceActivity.this, "your click - userId = "+ adapter.getItem(position).getAccountId(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AttendanceActivity.this,AttendanceDetailsActivity.class);
+                intent.putExtra("idUserAttendance", adapter.getItem(position).getAccountId());
+                startActivity(intent);
             }
         });
 
         //data hien co
-//        attendanceHelper.insertAttendance(new Attendance("1/1/2024",1));
-//        attendanceHelper.insertAttendance(new Attendance("1/1/2024",2));
-//        attendanceHelper.insertAttendance(new Attendance("1/1/2024",3));
-//        attendanceHelper.insertAttendance(new Attendance("2/1/2024",2));
-//        attendanceHelper.insertAttendance(new Attendance("2/1/2024",3));
-//        attendanceHelper.insertAttendance(new Attendance("3/1/2024",3));
-//        attendanceHelper.insertAttendance(new Attendance("4/1/2024",1));
-//        attendanceHelper.insertAttendance(new Attendance("4/1/2024",2));
-//        attendanceHelper.insertAttendance(new Attendance("4/1/2024",3));
+//        attendanceHelper.insertAttendance(new Attendance("1/1/2024",4));
+//        attendanceHelper.insertAttendance(new Attendance("1/1/2024",5));
+//        attendanceHelper.insertAttendance(new Attendance("1/1/2024",6));
+//        attendanceHelper.insertAttendance(new Attendance("2/1/2024",7));
+//        attendanceHelper.insertAttendance(new Attendance("2/1/2024",8));
+//        attendanceHelper.insertAttendance(new Attendance("3/1/2024",9));
+//        attendanceHelper.insertAttendance(new Attendance("4/1/2024",4));
+//        attendanceHelper.insertAttendance(new Attendance("4/1/2024",5));
+//        attendanceHelper.insertAttendance(new Attendance("4/1/2024",6));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
