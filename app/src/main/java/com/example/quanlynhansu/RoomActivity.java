@@ -1,5 +1,6 @@
 package com.example.quanlynhansu;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +25,12 @@ public class RoomActivity extends AppCompatActivity {
     ListView lvRoom;
     ArrayList<Room> arrRoom;
     EditText edtRoom;
+    TextView tvTotalRoom;
     Button btnAddRoom;
     Button btnUpdateRoom;
     int _posId;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,22 +40,19 @@ public class RoomActivity extends AppCompatActivity {
         btnAddRoom = (Button) findViewById(R.id.btnAddRoom);
         lvRoom = (ListView) findViewById(R.id.listViewRoom);
         edtRoom = (EditText) findViewById(R.id.edtInputRoom);
+        tvTotalRoom = (TextView) findViewById(R.id.tvTotalRoom);
 
         RoomHelper roomHelper = new RoomHelper(RoomActivity.this);
         //data khởi tạo ban đầu
         arrRoom = (ArrayList<Room>) roomHelper.getAllRooms();
 
-//        arrRoom = new ArrayList<Room>();
-//        arrRoom.add(new Room("hihi1",1));
-//        arrRoom.add(new Room("hihi2",1));
-//        arrRoom.add(new Room("hihi3",1));
-        //arrRoom = (ArrayList<Room>) roomHelper.getAllRooms();
         RoomAdapter adapter = new RoomAdapter(
                 RoomActivity.this,
                 R.layout.room_view,
                 arrRoom
         );
         lvRoom.setAdapter(adapter);
+        tvTotalRoom.setText(String.valueOf(arrRoom.size()));
         //them room vao listview
         btnAddRoom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +68,7 @@ public class RoomActivity extends AppCompatActivity {
                 arrRoom.addAll(roomHelper.getAllRooms());
                 //lang nghe su thay doi cua data
                 adapter.notifyDataSetChanged();
+                tvTotalRoom.setText(String.valueOf(arrRoom.size()));
                 edtRoom.setText("");
             }
         });
@@ -117,6 +119,7 @@ public class RoomActivity extends AppCompatActivity {
                                 arrRoom.addAll(roomHelper.getAllRooms());
                                 //lang nghe su thay doi cua data
                                 adapter.notifyDataSetChanged();
+                                tvTotalRoom.setText(String.valueOf(arrRoom.size()));
                             }
                         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override

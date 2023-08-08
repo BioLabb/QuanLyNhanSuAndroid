@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(true){
-            Intent intent = new Intent(this, RoomActivity.class);
+            Intent intent = new Intent(this,AttendanceActivity.class);
             startActivity(intent);
         } else
         if(v.getId() == btnSign.getId()) {

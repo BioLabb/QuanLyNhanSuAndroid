@@ -70,6 +70,17 @@ public class AttendanceHelper {
         return null;
     }
 
+    public Attendance getAttendanceByIdUser(int accountId) {
+        String SQL = "SELECT * FROM " + TABLE_ATTENDANCE + " WHERE account_id = " + accountId;
+
+        Cursor cursor = q.getData(SQL);
+        if (cursor.moveToFirst()) {
+            Attendance attendance = new Attendance(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
+            return attendance;
+        }
+        return null;
+    }
+
     public int removeAttendance(int attendanceId) {
         String SQL = "DELETE FROM " + TABLE_ATTENDANCE + " WHERE attendance_id = " + attendanceId;
         q.query(SQL);
@@ -94,4 +105,17 @@ public class AttendanceHelper {
         }
         return 1; // Cập nhật thành công
     }
+
+    public int totalAllAttendance(int accountId) {
+        String SQL = "SELECT * " +
+                     "FROM " + TABLE_ATTENDANCE +
+                     " WHERE account_id = " + accountId;
+
+        Cursor cursor = q.getData(SQL);
+        if (cursor.getCount() > 0) {
+            return cursor.getCount();
+        }
+        return 0;
+    }
+
 }

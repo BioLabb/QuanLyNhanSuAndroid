@@ -45,4 +45,23 @@
         android:layout_marginTop="136dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="133dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="32dp"
+        android:text="Tổng số phòng ban: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listViewRoom" />
+
+    <TextView
+        android:id="@+id/tvTotalRoom"
+        android:layout_width="11dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="32dp"
+        android:text="0"
+        app:layout_constraintStart_toStartOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/listViewRoom" />
 </androidx.constraintlayout.widget.ConstraintLayout>

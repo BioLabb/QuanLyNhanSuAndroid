@@ -13,9 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.quanlynhansu.Adapter.LeaveAdapter;
-import com.example.quanlynhansu.Adapter.RoomAdapter;
 import com.example.quanlynhansu.object.Leave;
-import com.example.quanlynhansu.object.Room;
 import com.example.quanlynhansu.sqlitehelper.LeaveHelper;
 
 import java.util.Calendar;
@@ -45,7 +43,7 @@ public class LeaveActivity extends AppCompatActivity {
         List<Leave> leaveList = leaveHelper.getAllLeavesReverse();
 
         // Tạo adapter và gắn dữ liệu vào ListView
-        adapter = new LeaveAdapter(LeaveActivity.this, leaveList);
+        adapter = new LeaveAdapter(LeaveActivity.this, R.layout.activity_leave, leaveList);
         Lview.setAdapter(adapter);
 
 

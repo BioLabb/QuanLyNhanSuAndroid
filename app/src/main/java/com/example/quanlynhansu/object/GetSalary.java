@@ -1,10 +1,22 @@
 package com.example.quanlynhansu.object;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class GetSalary {
     private  int id;
     private Calendar date;
+
+    public String getStrDate() {
+        return strDate;
+    }
+
+    public void setStrDate(String strDate) {
+        this.strDate = strDate;
+    }
+
+    private String strDate;
     private double salary;
     private double bonus;
     private double sum;
@@ -19,13 +31,23 @@ public class GetSalary {
         this.accountID = accountID;
     }
 
-    public GetSalary(Calendar date, double salary, double bonus, double sum, int accountID) {
-        this.date = date;
+    public GetSalary(int id, String strDate, double salary, double bonus, double sum, int accountID) {
+        this.id = id;
+        this.strDate = strDate;
         this.salary = salary;
         this.bonus = bonus;
         this.sum = sum;
         this.accountID = accountID;
     }
+
+    public GetSalary(String strDate, double salary, double bonus, double sum, int accountID) {
+        this.strDate = strDate;
+        this.salary = salary;
+        this.bonus = bonus;
+        this.sum = sum;
+        this.accountID = accountID;
+    }
+
 
     public int getId() {
         return id;
