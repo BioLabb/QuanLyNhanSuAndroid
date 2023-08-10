@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.quanlynhansu.object.Attendance;
+import com.example.quanlynhansu.object.Leave;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,30 @@ public class AttendanceHelper {
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            Attendance attendance = new Attendance(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
+            Attendance attendance = new Attendance(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getInt(2)
+            );
+            attendanceList.add(attendance);
+            cursor.moveToNext();
+        }
+        return attendanceList;
+    }
+
+    public List<Attendance> getAllAttendanceByIdUser(int accountId) {
+        List<Attendance> attendanceList = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_ATTENDANCE + " WHERE account_id = " + accountId;
+
+        Cursor cursor = database.rawQuery(query, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            Attendance attendance = new Attendance(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getInt(2)
+            );
             attendanceList.add(attendance);
             cursor.moveToNext();
         }
@@ -61,6 +85,17 @@ public class AttendanceHelper {
 
     public Attendance getAttendance(int attendanceId) {
         String SQL = "SELECT * FROM " + TABLE_ATTENDANCE + " WHERE attendance_id = " + attendanceId;
+
+        Cursor cursor = q.getData(SQL);
+        if (cursor.moveToFirst()) {
+            Attendance attendance = new Attendance(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
+            return attendance;
+        }
+        return null;
+    }
+
+    public Attendance getAttendanceByIdUser(int accountId) {
+        String SQL = "SELECT * FROM " + TABLE_ATTENDANCE + " WHERE account_id = " + accountId;
 
         Cursor cursor = q.getData(SQL);
         if (cursor.moveToFirst()) {
@@ -94,4 +129,17 @@ public class AttendanceHelper {
         }
         return 1; // Cập nhật thành công
     }
+
+    public int totalAllAttendance(int accountId) {
+        String SQL = "SELECT * " +
+                     "FROM " + TABLE_ATTENDANCE +
+                     " WHERE account_id = " + accountId;
+
+        Cursor cursor = q.getData(SQL);
+        if (cursor.moveToFirst() && cursor.getString(1) != null) {
+            return cursor.getCount();
+        }
+        return 0;
+    }
+
 }

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.quanlynhansu.object.GetSalary;
+import com.example.quanlynhansu.object.Leave;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,8 +29,9 @@ public class GetSalaryHelper {
      public int insert(GetSalary getSalary){
          ContentValues values = new ContentValues();
 
-         values.put("id",getSalary.getId());
-         values.put("date", getSalary.getDate().toString());
+//         values.put("id",getSalary.getId());
+         values.put("date", getSalary.getStrDate());
+         values.put("salary", getSalary.getSalary());
          values.put("bonus",getSalary.getBonus());
          values.put("sum",getSalary.getSum());
          values.put("account_id",getSalary.getAccountID());
@@ -47,6 +49,54 @@ public class GetSalaryHelper {
 
         if(cursor.isFirst()){
             // Chuyển chuỗi thành calender
+
+            GetSalary getSalary = new GetSalary(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getDouble(2),
+                    cursor.getDouble(3),
+                    cursor.getDouble(4),
+                    cursor.getInt(5)
+            );
+            return getSalary;
+        }
+        return null;
+     }
+
+     public List<GetSalary> getSalaryList() {
+        //
+        String SQL_SELECT = String.format("SELECT * FROM %s ",TABLE_GET_SALARY);
+        List<GetSalary> getSalaryList = new ArrayList<>();
+
+        Cursor cursor = DB.rawQuery(SQL_SELECT,null);
+        cursor.moveToFirst();
+
+         //calendar.setTime(format.parse("01/01/2023"));
+
+
+         //
+        while (cursor.isAfterLast() == false){
+            GetSalary getSalary = new GetSalary(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getDouble(2),
+                    cursor.getDouble(3),
+                    cursor.getDouble(4),
+                    cursor.getInt(5)
+            );
+
+            getSalaryList.add(getSalary);
+            cursor.moveToNext();
+        }
+
+        return getSalaryList;
+     }
+
+    public GetSalary getGetSalaryByIdUser(int accountId) throws ParseException {
+        String query = "SELECT * FROM " + TABLE_GET_SALARY + " WHERE account_id = " + accountId;
+
+        Cursor cursor = DB.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             calendar.setTime(format.parse(cursor.getString(1)));
@@ -62,37 +112,7 @@ public class GetSalaryHelper {
             return getSalary;
         }
         return null;
-     }
-
-     public List<GetSalary> getSalaryList() throws ParseException {
-        //
-        String SQL_SELECT = String.format("SELECT * FROM %s ",TABLE_GET_SALARY);
-        List<GetSalary> getSalaryList = new ArrayList<>();
-
-        Cursor cursor = DB.rawQuery(SQL_SELECT,null);
-        cursor.moveToFirst();
-
-        //
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        calendar.setTime(format.parse(cursor.getString(1)));
-
-        //
-        while (cursor.isAfterLast() == false){
-            GetSalary getSalary = new GetSalary(
-                    cursor.getInt(0),
-                    calendar,
-                    cursor.getDouble(2),
-                    cursor.getDouble(3),
-                    cursor.getDouble(4),
-                    cursor.getInt(5)
-            );
-
-            getSalaryList.add(getSalary);
-        }
-
-        return getSalaryList;
-     }
+    }
 
      public int remove(int id){
         String where = "id = ?";
@@ -108,11 +128,11 @@ public class GetSalaryHelper {
         ContentValues values = new ContentValues();
 
          values.put("id",getSalary.getId());
-         values.put("date", getSalary.getDate().toString());
+         values.put("date", getSalary.getStrDate());
          values.put("bonus",getSalary.getBonus());
          values.put("sum",getSalary.getSum());
          values.put("account_id",getSalary.getAccountID());
-
+         values.put("salary", getSalary.getSalary());
         int result =  DB.update(TABLE_GET_SALARY,values,null,null);
         if(result < 1)
             return -1;

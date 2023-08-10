@@ -38,7 +38,7 @@ public class Salary {
     }
 
     public String getDate() {
-        return date;
+        return String.valueOf(date);
     }
 
     public void setDate(Calendar date) {

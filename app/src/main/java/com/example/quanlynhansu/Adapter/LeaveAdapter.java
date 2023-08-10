@@ -20,7 +20,7 @@ public class LeaveAdapter extends ArrayAdapter<Leave> {
 
     private List<Leave> leaveList;
 
-    public LeaveAdapter(@NonNull Context context, List<Leave> leaveList) {
+    public LeaveAdapter(@NonNull Context context, int activity_leave, List<Leave> leaveList) {
         super(context, 0, leaveList);
         this.leaveList = leaveList;
     }

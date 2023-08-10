@@ -107,7 +107,7 @@ public class AccountHelper {
         Cursor cursor = Data.rawQuery(SQL_SELECT,null);
         cursor.moveToFirst();
 
-        while (false == cursor.moveToFirst()){
+        while (cursor.isAfterLast() == false){
             Account account = new Account(
                     cursor.getInt(0),
                     cursor.getString(1),
