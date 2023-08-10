@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // bắt sự kiên onclick các Button
     @Override
     public void onClick(View v) {
-      
         // khi button sign được click
         if(v.getId() == btnSign.getId()) {
             AccountHelper accountHelper = new AccountHelper(this);

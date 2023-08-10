@@ -132,7 +132,6 @@ public class AttendanceHelper {
         return 1; // Cập nhật thành công
     }
 
-<<<<<<< HEAD
     public int totalAllAttendance(int accountId) {
         String SQL = "SELECT * " +
                      "FROM " + TABLE_ATTENDANCE +
@@ -145,7 +144,6 @@ public class AttendanceHelper {
         return 0;
     }
 
-=======
     public int getCountAttendance(){
         String sqlCount = String.format("SELECT COUNT(%s) FROM %s",ATTENDANCE_ID,TABLE_ATTENDANCE);
 
@@ -156,5 +154,4 @@ public class AttendanceHelper {
         }
         return 0;
     }
->>>>>>> 1dfdd8030186d23939c59900579d8c2d010cfc59
 }

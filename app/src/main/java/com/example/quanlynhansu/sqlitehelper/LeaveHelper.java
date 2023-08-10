@@ -199,7 +199,6 @@ public class LeaveHelper {
         return 1; // Xóa thành công
     }
 
-<<<<<<< HEAD
     //tinh so ngay giua hai khoang time
     public long totalLeaveDate(String start,String end){
         long result = 0;
@@ -238,7 +237,7 @@ public class LeaveHelper {
         return result;
     }
 
-    public long totalUnapprovedDay(int accountId){
+    public long totalUnapprovedDay(int accountId) {
         String query = "SELECT * " +
                 "FROM " + TABLE_LEAVE +
                 " WHERE account_id = " + accountId;
@@ -249,12 +248,13 @@ public class LeaveHelper {
         if (cursor.moveToFirst()) {
             do {
                 //duyet qua cac item va cong tong so ngay da duoc xet duyet
-                if(!cursor.getString(4).equals("da duyet"))
+                if (!cursor.getString(4).equals("da duyet"))
                     result += totalLeaveDate(cursor.getString(1), cursor.getString(2));
             } while (cursor.moveToNext());
         }
         return result;
-=======
+    }
+
     public int getCountLeave(){
         String sqlCount = String.format("SELECT COUNT(%s) FROM %s",LEAVE_ID,TABLE_LEAVE);
 
@@ -264,6 +264,5 @@ public class LeaveHelper {
             return resultCount;
         }
         return 0;
->>>>>>> 1dfdd8030186d23939c59900579d8c2d010cfc59
     }
 }
