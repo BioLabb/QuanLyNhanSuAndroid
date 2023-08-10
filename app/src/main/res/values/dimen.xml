@@ -4,6 +4,8 @@
     <dimen name="wight_input_login">310dp</dimen>
     <dimen name="margin_top_login">28dp</dimen>
 
+    <dimen name="padding_button">8dp</dimen>
+
     <dimen name="text_header">40sp</dimen>
     <dimen name="text_content">15sp</dimen>
 </resources>

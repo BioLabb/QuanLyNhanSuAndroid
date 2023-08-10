@@ -18,6 +18,7 @@ import java.util.List;
 public class LeaveHelper {
     private Context context;
     public final static String TABLE_LEAVE = "Leave";
+    private final String LEAVE_ID = "leave_id";
 
     private SQL dbHelper;
     private final SQLiteDatabase database;
@@ -198,6 +199,7 @@ public class LeaveHelper {
         return 1; // Xóa thành công
     }
 
+<<<<<<< HEAD
     //tinh so ngay giua hai khoang time
     public long totalLeaveDate(String start,String end){
         long result = 0;
@@ -252,5 +254,16 @@ public class LeaveHelper {
             } while (cursor.moveToNext());
         }
         return result;
+=======
+    public int getCountLeave(){
+        String sqlCount = String.format("SELECT COUNT(%s) FROM %s",LEAVE_ID,TABLE_LEAVE);
+
+        Cursor cursor = database.rawQuery(sqlCount,null);
+        if(cursor.moveToFirst()){
+            int resultCount = cursor.getInt(0);
+            return resultCount;
+        }
+        return 0;
+>>>>>>> 1dfdd8030186d23939c59900579d8c2d010cfc59
     }
 }

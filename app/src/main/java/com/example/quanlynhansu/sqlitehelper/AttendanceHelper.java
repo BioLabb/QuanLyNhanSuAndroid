@@ -8,12 +8,14 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.quanlynhansu.object.Attendance;
 import com.example.quanlynhansu.object.Leave;
 
+import java.net.PortUnreachableException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceHelper {
     private Context context;
     public static final String TABLE_ATTENDANCE = "Attendance";
+    public static final String ATTENDANCE_ID = "attendance_id";
 
     private SQL q;
     private final SQLiteDatabase database;
@@ -130,6 +132,7 @@ public class AttendanceHelper {
         return 1; // Cập nhật thành công
     }
 
+<<<<<<< HEAD
     public int totalAllAttendance(int accountId) {
         String SQL = "SELECT * " +
                      "FROM " + TABLE_ATTENDANCE +
@@ -142,4 +145,16 @@ public class AttendanceHelper {
         return 0;
     }
 
+=======
+    public int getCountAttendance(){
+        String sqlCount = String.format("SELECT COUNT(%s) FROM %s",ATTENDANCE_ID,TABLE_ATTENDANCE);
+
+        Cursor cursor =  database.rawQuery(sqlCount,null);
+        if(cursor.moveToFirst()){
+            int resultCount = cursor.getInt(0);
+            return resultCount;
+        }
+        return 0;
+    }
+>>>>>>> 1dfdd8030186d23939c59900579d8c2d010cfc59
 }
