@@ -12,20 +12,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.quanlynhansu.AttendanceActivity;
+import com.example.quanlynhansu.GetSalaryActivity;
+import com.example.quanlynhansu.LeaveActivity;
+import com.example.quanlynhansu.LeaveDetailsActivity;
+import com.example.quanlynhansu.LeaveStatisticActivity;
 import com.example.quanlynhansu.R;
+import com.example.quanlynhansu.RoomActivity;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
+import com.example.quanlynhansu.sqlitehelper.GetSalaryHelper;
 import com.example.quanlynhansu.sqlitehelper.LeaveHelper;
 import com.example.quanlynhansu.store.AccountStore;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment{
     private Context context;
     private View view;
     private TextView txtViewName;
     private TextView txtSumNhanVien;
     private TextView txtSumNghiPhep;
     private TextView txtSumCong;
+    private TextView sumLuong;
 
     private Button btnPhongBan;
     private Button btnChamCong;
@@ -40,11 +49,39 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         this.init();
 
+
         // set event Onclick
-        btnPhongBan.setOnClickListener(this);
-        btnChamCong.setOnClickListener(this);
-        btnNghiPhep.setOnClickListener(this);
-        btnLuongThuong.setOnClickListener(this);
+        btnPhongBan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeActivity(context, RoomActivity.class);
+            }
+        });
+
+        btnChamCong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeActivity(context, AttendanceActivity.class);
+            }
+        });
+
+        btnLuongThuong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeActivity(context, GetSalaryActivity.class);
+            }
+        });
+
+        btnNghiPhep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeActivity(context, LeaveStatisticActivity.class);
+            }
+        });
+
+//        btnChamCong.setOnClickListener(this);
+//        btnNghiPhep.setOnClickListener(this);
+//        btnLuongThuong.setOnClickListener(this);
 
         return view;
     }
@@ -60,6 +97,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         txtSumNhanVien = (TextView) view.findViewById(R.id.sum_nhan_vien);
         txtSumNghiPhep = (TextView) view.findViewById(R.id.txt_sum_nghi_phep);
         txtSumCong = (TextView) view.findViewById(R.id.txt_sum_cong);
+        sumLuong = (TextView) view.findViewById(R.id.txt_sum_luong);
 
         // setName user at Textview
         txtViewName = (TextView) view.findViewById(R.id.txt_name);
@@ -83,6 +121,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         String sumCong = String.valueOf(attendanceHelper.getCountAttendance());
         txtSumCong.setText(sumCong);
 
+        // set tong luong
+        GetSalaryHelper getSalaryHelper = new GetSalaryHelper(context);
+        sumLuong.setText(String.valueOf(getSalaryHelper.totalGetSalary()));
+
     }
 
     private void changeActivity(Context context, Class<?> activity){
@@ -91,18 +133,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     }
     // handler event onclick
-    @Override
+//    @Override
     public void onClick(View v) {
         int id = view.getId();
-
         if(id == btnPhongBan.getId()){
-
+            Toast.makeText(context,String.format("%d, %d ", id, btnPhongBan),Toast.LENGTH_SHORT).show();
+            changeActivity(context, RoomActivity.class);
         }else if(id == btnChamCong.getId()){
-
-        }else if(id == btnChamCong.getId()){
-
+            changeActivity(context, LeaveActivity.class);
+        }else if(id == btnNghiPhep.getId()){
+            changeActivity(context, RoomActivity.class);
         }else  if(id == btnLuongThuong.getId()){
-
+            changeActivity(context, GetSalaryActivity.class);
         }
     }
 }

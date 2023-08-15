@@ -1,5 +1,6 @@
 package com.example.quanlynhansu.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,15 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.quanlynhansu.LeaveActivity;
 import com.example.quanlynhansu.R;
 import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
 import com.example.quanlynhansu.sqlitehelper.GetSalaryHelper;
 import com.example.quanlynhansu.store.AccountStore;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class HomeUseFragment extends Fragment {
     private View view;
@@ -23,6 +29,7 @@ public class HomeUseFragment extends Fragment {
     private TextView tongCong;
     private TextView tongLuong;
     private Button dkNghiPhep;
+    private Button chamCong;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,6 +44,28 @@ public class HomeUseFragment extends Fragment {
         int id = AccountStore.getUser().getAccountID();
         tongLuong.setText("0");
 
+        dkNghiPhep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), LeaveActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        AttendanceHelper attendanceHelper = new AttendanceHelper(getContext());
+        // Lấy ngày hiện tại
+        Date currentDate = new Date();
+        // Định dạng ngày theo định dạng dd/MM/yyyy
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String formattedDate = sdf.format(currentDate);
+
+        chamCong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attendanceHelper.insertAttendance(formattedDate,AccountStore.getUser().getAccountID());
+                Toast.makeText(getContext() , "ban da cham cong" + formattedDate,Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
@@ -48,5 +77,6 @@ public class HomeUseFragment extends Fragment {
         tongLuong = (TextView) view.findViewById(R.id.txt_sum_luong);
 //        Toast.makeText(getContext(),tongLuong.getText().toString(),Toast.LENGTH_SHORT).show();
         dkNghiPhep = (Button) view.findViewById(R.id.btn_dk_phep);
+        chamCong = (Button) view.findViewById(R.id.btn_cham_cong);
     }
 }

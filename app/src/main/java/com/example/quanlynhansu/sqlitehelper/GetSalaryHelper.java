@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.object.GetSalary;
 import com.example.quanlynhansu.object.Leave;
 
@@ -21,11 +22,28 @@ public class GetSalaryHelper {
     private SQLiteHelper sqLiteHelper;
     private SQLiteDatabase DB;
 
+    private SQL dbHelper;
+
     public GetSalaryHelper(Context context){
         sqLiteHelper = new SQLiteHelper(context);
+        dbHelper =  new SQL(context);
         DB = sqLiteHelper.getWritableDatabase();
+        onCreate(DB);
     }
 
+    public void onCreate(SQLiteDatabase database){
+        //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
+
+
+        if (!dbHelper.isTableInitialized(database, TABLE_GET_SALARY))
+        {
+            insert(new GetSalary("1/1/1970", 5000, 100,0,1 ));
+            insert(new GetSalary("1/1/1970", 1000, 700,0,2 ));
+            insert(new GetSalary("1/1/1970", 4000, 200,0,3 ));
+            insert(new GetSalary("1/2/1970", 2000, 300,0,4 ));
+
+        }
+    }
      public int insert(GetSalary getSalary){
          ContentValues values = new ContentValues();
 
@@ -90,6 +108,22 @@ public class GetSalaryHelper {
         }
 
         return getSalaryList;
+     }
+
+     public double totalGetSalary(){
+        double totalSum = 0;
+        String query = "SELECT * FROM " + TABLE_GET_SALARY;
+        Cursor cursor = DB.rawQuery(query,null);
+
+        cursor.moveToFirst();
+         while (cursor.isAfterLast() == false){
+             totalSum += cursor.getDouble(4);
+             cursor.moveToNext();
+             cursor.moveToNext();
+         }
+
+         return totalSum;
+
      }
 
     public GetSalary getGetSalaryByIdUser(int accountId) throws ParseException {

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.quanlynhansu.Adapter.FragmentAdminAdapter;
+import com.example.quanlynhansu.store.AccountStore;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -60,13 +61,13 @@ public class AdminActivity extends AppCompatActivity implements NavigationBarVie
         }
         else if(idSelect == R.id.tab_account){
             Intent intent = new Intent(context, PersonalInformation.class);
+            intent.putExtra("idUser", AccountStore.getUser().getAccountID());
+            intent.putExtra("roleDelete","User");
             startActivity(intent);
 //            viewPager.setCurrentItem(2);
         }
         return true;
     }
-
-
 
 
     private void init(){

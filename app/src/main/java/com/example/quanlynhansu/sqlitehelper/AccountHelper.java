@@ -103,6 +103,27 @@ public class AccountHelper {
         return null;
     }
 
+    public Account getAccount(String userName, String pass){
+        String SQL_SELECT = String.format("SELECT * FROM %s WHERE username = '%s' and password = '%s'",TABLE_ACCOUNT,userName, pass);
+        Cursor cursor = Data.rawQuery(SQL_SELECT,null);
+
+        if(cursor.moveToFirst()){
+            Account account = new Account(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getInt(7)
+
+
+            );
+            return  account;
+        }
+        return null;
+    }
 
     public List<Account> getAllAccounts(){
         String SQL_SELECT = String.format("SELECT * FROM %s",TABLE_ACCOUNT);

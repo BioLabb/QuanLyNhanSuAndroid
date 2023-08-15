@@ -54,13 +54,16 @@ public class AttendanceAdapter extends ArrayAdapter<Attendance> {
 
     //filter theo id user chuc nang tim kiem
     public void filter(String charText){
+        AccountHelper accountHelper = new AccountHelper(getContext());
         charText = charText.toLowerCase(Locale.getDefault());
         attendanceList.clear();
         if (charText.length() == 0){
             attendanceList.addAll(arrayList);
         }else {
             for (Attendance attendance : arrayList){
-                if (String.valueOf(attendance.getAccountId()).toLowerCase(Locale.getDefault()).contains(charText)){
+                if (String.valueOf(accountHelper.getAccount(attendance.getAccountId()).getFullName())
+                        .toLowerCase(Locale.getDefault())
+                        .contains(charText)){
                     attendanceList.add(attendance);
                 }
             }

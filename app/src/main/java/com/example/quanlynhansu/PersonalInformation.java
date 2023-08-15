@@ -26,6 +26,7 @@ import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.RoleAccountHelper;
 import com.example.quanlynhansu.sqlitehelper.RoleHelper;
 import com.example.quanlynhansu.sqlitehelper.RoomHelper;
+import com.example.quanlynhansu.store.AccountStore;
 
 import java.util.List;
 
@@ -56,7 +57,6 @@ public class PersonalInformation extends AppCompatActivity {
         Intent intent = getIntent();
         idUser = intent.getIntExtra("accountID", 1);
         roleDelete = intent.getStringExtra("roleDelete");
-
 
 
         // Sử dụng các giá trị nhận được ở đây theo nhu cầu của bạn

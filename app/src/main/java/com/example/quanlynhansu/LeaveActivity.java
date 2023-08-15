@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.example.quanlynhansu.Adapter.LeaveAdapter;
 import com.example.quanlynhansu.object.Leave;
 import com.example.quanlynhansu.sqlitehelper.LeaveHelper;
+import com.example.quanlynhansu.store.AccountStore;
 
 import java.util.Calendar;
 import java.util.List;
@@ -30,7 +31,7 @@ public class LeaveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave);
 
-        int iduser = 20;
+        int iduser = AccountStore.getUser().getAccountID();
         leaveHelper  = new LeaveHelper(LeaveActivity.this);
         EditText editStartDate = findViewById(R.id.editStartDate);
         EditText editEndDate = findViewById(R.id.editEndDate);

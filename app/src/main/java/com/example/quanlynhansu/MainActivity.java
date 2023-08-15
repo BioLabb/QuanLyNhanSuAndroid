@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             AccountHelper accountHelper = new AccountHelper(context);
 
             String userName = edtUser.getText().toString().trim();
-            Account account = accountHelper.getAccount(userName);
+            Account account = accountHelper.getAccount(userName,edtPass.getText().toString().trim());
 
 
             if(null != account){
