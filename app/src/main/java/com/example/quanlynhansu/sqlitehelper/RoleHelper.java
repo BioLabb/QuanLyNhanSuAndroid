@@ -14,8 +14,8 @@ import java.util.List;
 
 public class RoleHelper {
     private Context context;
-    private final String ADMIN = "admin";
-    private final String USER = "user";
+    private final String ADMIN = "Admin";
+    private final String USER = "User";
 
     public final static String TABLE_ROLE = "Role";
 
@@ -118,7 +118,8 @@ public class RoleHelper {
             return false;
 
         String role = cursor.getString(0);
-        return role.equalsIgnoreCase(ADMIN) ? true:false;
+        System.out.println("isaaa" + role);
+        return role.equalsIgnoreCase(USER) ? false:true ;
 
     }
 }

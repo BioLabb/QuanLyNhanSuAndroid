@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // kiểm tra user có tồn tại hay ko
             // nếu phải chuyển sang activity khác
             if(isUser()){
+                System.out.println("isAdmin"+ isAdmin());
                 if(isAdmin()){
                     changeActivity(context, AdminActivity.class);
                 }else{
@@ -119,9 +120,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private Boolean isAdmin(){
-        RoleHelper roleHelper = new RoleHelper(context);
-
-        return roleHelper.isAdmin(AccountStore.getUser().getAccountID()) ? true:false;
+       RoleAccountHelper roleAccountHelper = new RoleAccountHelper(context);
+       if ( roleAccountHelper.searchRoleUser(AccountStore.getUser().getAccountID()).equals("User") )
+       {
+           return false;
+       }
+       return true;
     }
 
     private void changeActivity(Context context, Class<?> activity){

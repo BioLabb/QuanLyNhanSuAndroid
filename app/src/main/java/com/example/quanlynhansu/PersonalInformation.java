@@ -43,6 +43,7 @@ public class PersonalInformation extends AppCompatActivity {
     RoleHelper roleHelper;
     RoleAccountHelper roleAccountHelper;
     RoomHelper roomHelper;
+
     LinearLayout onBack;
     int idUser;
     String roleDelete;
@@ -57,15 +58,20 @@ public class PersonalInformation extends AppCompatActivity {
         Intent intent = getIntent();
         idUser = intent.getIntExtra("accountID", 1);
         roleDelete = intent.getStringExtra("roleDelete");
+        System.out.println(idUser);
+        System.out.println(roleDelete);
+
 
 
         // Sử dụng các giá trị nhận được ở đây theo nhu cầu của bạn
         // Ví dụ:
         Log.d("PersonalInformation", "accountID: " + idUser);
-
+        Log.d("PersonalInformation", "store: " +  AccountStore.getUser().getAccountID());
 
         accountHelper = new AccountHelper(PersonalInformation.this);
+        roleHelper = new RoleHelper(PersonalInformation.this);
         roomHelper = new RoomHelper(PersonalInformation.this);
+        roleAccountHelper = new RoleAccountHelper(PersonalInformation.this);
         btnEditInformation = findViewById(R.id.btnEditInformation);
         editLoginName = findViewById(R.id.editLoginName);
         editFullName = findViewById(R.id.editFullName);
@@ -144,8 +150,10 @@ public class PersonalInformation extends AppCompatActivity {
                     editEmail.setEnabled(true);
                     editNumber.setEnabled(true);
                     editAddress.setEnabled(true);
-                    spinnerRole.setEnabled(true);
-                    spinnerRoom.setEnabled(true);
+                    if(!roleDelete.equals("User")) {
+                        spinnerRole.setEnabled(true);
+                        spinnerRoom.setEnabled(true);
+                    }
                     btnEditInformation.setText("Cập nhập");
                     txtLable.setText("Sửa thông tin cá nhân");
 
@@ -156,9 +164,10 @@ public class PersonalInformation extends AppCompatActivity {
 
     }
     public void setLayoutUser(int idUser){
+        System.out.println("setlayout");
         Account account = accountHelper.getAccount(idUser);
-       String role = searchRoleUser(idUser);
-
+        String role = roleAccountHelper.searchRoleUser(idUser);
+        System.out.println(role);
         editLoginName.setText(account.getUserName());
         editFullName.setText(account.getFullName());
         editEmail.setText(account.getEmail());
@@ -269,7 +278,11 @@ public class PersonalInformation extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Thực hiện lệnh xóa ở đây
-                        accountHelper.removeAccount(idUser);
+                        System.out.println("sdf");
+                        System.out.println(idUser);
+
+
+                        accountHelper.removeAccountChien(idUser);
                     }
                 });
 
@@ -311,7 +324,7 @@ public class PersonalInformation extends AppCompatActivity {
         roleAccountHelper = new RoleAccountHelper(PersonalInformation.this);
         roleHelper = new RoleHelper(PersonalInformation.this);
         List<RoleAccount> roleAccountList = roleAccountHelper.getAllRoleAccounts();
-        List<Role> roles =  roleHelper.getAllRoles();
+
         for(RoleAccount roleAccount: roleAccountList){
             if(roleAccount.getAccountId() == idUser)
                 return roleAccount;

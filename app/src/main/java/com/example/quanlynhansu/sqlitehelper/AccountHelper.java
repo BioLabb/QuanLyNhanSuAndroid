@@ -33,9 +33,9 @@ public class AccountHelper {
         if (!dbHelper.isTableInitialized(database, TABLE_ACCOUNT))
         {
             insertAccount(new Account("admin","12345","vanchien","email11","01424234","adress",1));
-            insertAccount(new Account("use1","12345","vanchien","email11","01424234","adress",1));
-            insertAccount(new Account("useName2","12345","HaiMai","email12","01424234","adress",2));
-            insertAccount(new Account("useName3","12345","KimThien","email13","01424234","adress",3));
+            insertAccount(new Account("user1","12345","vanchien","email11","01424234","adress",1));
+            insertAccount(new Account("userName2","12345","HaiMai","email12","01424234","adress",2));
+            insertAccount(new Account("userName3","12345","KimThien","email13","01424234","adress",3));
 
         }
     }
@@ -222,5 +222,10 @@ public class AccountHelper {
 
         return countAccount;
     }
-
+    public int removeAccountChien(int id) {
+        int result = Data.delete(TABLE_ACCOUNT, "account_id = ?", new String[]{String.valueOf(id)});
+        if (result == 1)
+            return 1;
+        return 0;
+    }
 }

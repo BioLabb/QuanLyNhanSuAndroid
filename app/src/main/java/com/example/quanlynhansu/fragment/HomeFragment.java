@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment{
         txtSumNhanVien = (TextView) view.findViewById(R.id.sum_nhan_vien);
         txtSumNghiPhep = (TextView) view.findViewById(R.id.txt_sum_nghi_phep);
         txtSumCong = (TextView) view.findViewById(R.id.txt_sum_cong);
-        sumLuong = (TextView) view.findViewById(R.id.txt_sum_luong);
+        sumLuong = (TextView) view.findViewById(R.id.sum_luong);
 
         // setName user at Textview
         txtViewName = (TextView) view.findViewById(R.id.txt_name);

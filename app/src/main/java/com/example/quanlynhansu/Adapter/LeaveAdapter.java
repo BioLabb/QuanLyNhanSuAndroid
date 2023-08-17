@@ -24,7 +24,10 @@ public class LeaveAdapter extends ArrayAdapter<Leave> {
         super(context, 0, leaveList);
         this.leaveList = leaveList;
     }
-
+    public LeaveAdapter(@NonNull Context context, List<Leave> leaveList) {
+        super(context, 0, leaveList);
+        this.leaveList = leaveList;
+    }
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -46,5 +49,9 @@ public class LeaveAdapter extends ArrayAdapter<Leave> {
 
         return convertView;
     }
+    public void updateData(List<Leave> newData) {
+        clear(); // Xóa dữ liệu hiện tại trong Adapter
+        addAll(newData); // Thêm dữ liệu mới vào Adapter
+        notifyDataSetChanged(); // Thông báo cập nhật giao diện
+    }
 }
-

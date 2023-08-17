@@ -13,7 +13,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.quanlynhansu.Adapter.LeaveAdapter;
+import com.example.quanlynhansu.Adapter.RoomAdapter;
 import com.example.quanlynhansu.object.Leave;
+import com.example.quanlynhansu.object.Room;
 import com.example.quanlynhansu.sqlitehelper.LeaveHelper;
 import com.example.quanlynhansu.store.AccountStore;
 
@@ -26,6 +28,7 @@ public class LeaveActivity extends AppCompatActivity {
 
     ListView Lview;
     private LeaveAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,7 @@ public class LeaveActivity extends AppCompatActivity {
         List<Leave> leaveList = leaveHelper.getAllLeavesReverse();
 
         // Tạo adapter và gắn dữ liệu vào ListView
-        adapter = new LeaveAdapter(LeaveActivity.this, R.layout.activity_leave, leaveList);
+        adapter = new LeaveAdapter(LeaveActivity.this, leaveList);
         Lview.setAdapter(adapter);
 
 
@@ -89,16 +92,16 @@ public class LeaveActivity extends AppCompatActivity {
 
                 // Hiển thị DatePickerDialog
                 DatePickerDialog datePickerDialog = new DatePickerDialog(LeaveActivity.this, new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                // Định dạng ngày tháng thành chuỗi "dd/MM/yyyy"
-                                String formattedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d",
-                                        dayOfMonth, monthOfYear + 1, year);
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        // Định dạng ngày tháng thành chuỗi "dd/MM/yyyy"
+                        String formattedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d",
+                                dayOfMonth, monthOfYear + 1, year);
 
-                                // Hiển thị giá trị ngày tháng trong EditText
-                                editEndDate.setText(formattedDate);
-                            }
-                        }, year, month, day);
+                        // Hiển thị giá trị ngày tháng trong EditText
+                        editEndDate.setText(formattedDate);
+                    }
+                }, year, month, day);
 
                 // Hiển thị DatePickerDialog
                 datePickerDialog.show();
@@ -164,6 +167,7 @@ public class LeaveActivity extends AppCompatActivity {
                 System.out.println(editEndDate.getText());
                 System.out.println(editStartDate.getText());
 
+                adapter.updateData(leaveHelper.getAllLeavesReverse());
 
             }
         });

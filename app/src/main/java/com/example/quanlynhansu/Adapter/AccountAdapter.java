@@ -42,7 +42,7 @@ public class AccountAdapter extends ArrayAdapter<Account> {
 
         Account account = accountList.get(position);
 
-        String RoleUser = searchRoleUser(account.getAccountID());
+        String RoleUser = roleAccountHelper.searchRoleUser(account.getAccountID());
         TextView accountViewFullName = convertView.findViewById(R.id.accountViewFullName);
         TextView accountViewEmail = convertView.findViewById(R.id.accountViewEmail);
         TextView accountViewRole = convertView.findViewById(R.id.accountViewRole);
@@ -57,21 +57,6 @@ public class AccountAdapter extends ArrayAdapter<Account> {
 
         return convertView;
     }
-    public String searchRoleUser(int idUser){
-        List<RoleAccount> roleAccountList = roleAccountHelper.getAllRoleAccounts();
-        List<Role> roles =  roleHelper.getAllRoles();
-        for(RoleAccount roleAccount: roleAccountList){
-            if(roleAccount.getAccountId() == idUser)
-                for(Role role: roles){
-                    if(role.getRoleId() == roleAccount.getRoleId())
-                    {
 
-                        return role.getRoleName();
-                    }
-                }
-        }
-        return "Chưa xét";
-
-    }
 }
 

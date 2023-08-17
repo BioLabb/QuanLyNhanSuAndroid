@@ -4,11 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
+import com.example.quanlynhansu.object.Role;
 import com.example.quanlynhansu.object.RoleAccount;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class RoleAccountHelper {
     private Context context;
@@ -16,17 +19,19 @@ public class RoleAccountHelper {
 
     private SQL dbHelper;
     private final SQLiteDatabase database;
+    RoleHelper roleHelper;
 
     public RoleAccountHelper(Context context) {
         this.context = context;
         dbHelper = new SQL(context);
         database = dbHelper.getWritableDatabase();
+        roleHelper = new RoleHelper(context);
         onCreate(database);
     }
     public void onCreate(SQLiteDatabase database){
        if(!dbHelper.isTableInitialized(database,TABLE_ROLE_ACCOUNT)){
-           insertRoleAccount(1,2);
-           insertRoleAccount(2,1);
+           insertRoleAccount(1,1);
+           insertRoleAccount(2,2);
            insertRoleAccount(3,3);
        }
 
@@ -77,4 +82,21 @@ public class RoleAccountHelper {
 
         return roleAccountList;
     }
+    public String searchRoleUser(int idUser){
+        List<RoleAccount> roleAccountList = getAllRoleAccounts();
+        List<Role> roles =  roleHelper.getAllRoles();
+
+        for(RoleAccount roleAccount: roleAccountList){
+            if(roleAccount.getAccountId() == idUser) {
+                Log.d("getAllRoleAccounts" , String.valueOf(roleAccount));
+                for(Role role: roles){
+                    if(role.getRoleId() == roleAccount.getRoleId()) {
+                        return role.getRoleName();
+                    }
+                }
+            }
+        }
+        return "Chưa xét";
+    }
+
 }

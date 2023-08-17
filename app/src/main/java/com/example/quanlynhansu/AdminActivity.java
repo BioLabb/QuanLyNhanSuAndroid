@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.quanlynhansu.Adapter.FragmentAdminAdapter;
+import com.example.quanlynhansu.sqlitehelper.RoleAccountHelper;
 import com.example.quanlynhansu.store.AccountStore;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -19,6 +20,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationBarVie
     ViewPager2 viewPager;
 
     Context context;
+    RoleAccountHelper roleAccountHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +63,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationBarVie
         }
         else if(idSelect == R.id.tab_account){
             Intent intent = new Intent(context, PersonalInformation.class);
-            intent.putExtra("idUser", AccountStore.getUser().getAccountID());
-            intent.putExtra("roleDelete","User");
+            intent.putExtra("accountID", AccountStore.getUser().getAccountID());
+            String roleDelete = roleAccountHelper.searchRoleUser(AccountStore.getUser().getAccountID());
+            intent.putExtra("roleDelete", roleDelete);
             startActivity(intent);
 //            viewPager.setCurrentItem(2);
         }
@@ -77,6 +80,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationBarVie
 
         FragmentAdminAdapter fragmentAdminAdapter = new FragmentAdminAdapter(getSupportFragmentManager(),getLifecycle());
         viewPager.setAdapter(fragmentAdminAdapter);
-
+        roleAccountHelper = new RoleAccountHelper(context);
     }
 }
