@@ -13,14 +13,13 @@ import android.widget.Toast;
 import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.RoleAccountHelper;
-import com.example.quanlynhansu.sqlitehelper.RoleHelper;
 import com.example.quanlynhansu.sqlitehelper.SQLiteHelper;
 import com.example.quanlynhansu.store.AccountStore;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edtUser, edtPass;
+    Button btnLogin;
     Button btnSign;
-
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +29,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //init View
         edtUser = (EditText) findViewById(R.id.inputTextUser);
         edtPass = (EditText) findViewById(R.id.inputTextPass);
-        btnSign = (Button) findViewById(R.id.btnSign);
-
+        btnLogin = (Button) findViewById(R.id.btn_login);
+        btnSign = (Button) findViewById(R.id.btn_sign);
         //init
         context = MainActivity.this;
         SQLiteHelper sqLiteHelper = new SQLiteHelper(context);
 
         //set Onclick
+        btnLogin.setOnClickListener(this);
         btnSign.setOnClickListener(this);
     }
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         // khi button sign được click
-        if(v.getId() == btnSign.getId()) {
+        if(v.getId() == btnLogin.getId()) {
             AccountHelper accountHelper = new AccountHelper(this);
             // kiểm tra user có tồn tại hay ko
             // nếu phải chuyển sang activity khác
@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else {
                 Toast.makeText(this,"incorrect user or password",Toast.LENGTH_SHORT).show();
             }
+        }else if( v.getId() == btnSign.getId()){
+            changeActivity(context,AddUseActivity.class);
         }
     }
 

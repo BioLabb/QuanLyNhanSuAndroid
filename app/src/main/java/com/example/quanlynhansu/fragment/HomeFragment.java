@@ -19,6 +19,7 @@ import com.example.quanlynhansu.GetSalaryActivity;
 import com.example.quanlynhansu.LeaveActivity;
 import com.example.quanlynhansu.LeaveDetailsActivity;
 import com.example.quanlynhansu.LeaveStatisticActivity;
+import com.example.quanlynhansu.MainActivity;
 import com.example.quanlynhansu.R;
 import com.example.quanlynhansu.RoomActivity;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
@@ -35,7 +36,7 @@ public class HomeFragment extends Fragment{
     private TextView txtSumNghiPhep;
     private TextView txtSumCong;
     private TextView sumLuong;
-
+    private Button btnDangXuat;
     private Button btnPhongBan;
     private Button btnChamCong;
     private Button btnNghiPhep;
@@ -79,6 +80,14 @@ public class HomeFragment extends Fragment{
             }
         });
 
+        btnDangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AccountStore.setUser(null);
+                changeActivity(getContext(), MainActivity.class);
+            }
+        });
+
 //        btnChamCong.setOnClickListener(this);
 //        btnNghiPhep.setOnClickListener(this);
 //        btnLuongThuong.setOnClickListener(this);
@@ -93,6 +102,7 @@ public class HomeFragment extends Fragment{
         btnPhongBan = (Button) view.findViewById(R.id.btn_quan_ly_phong_ban);
         btnChamCong = (Button) view.findViewById(R.id.quan_ly_cham_cong);
         btnLuongThuong = (Button) view.findViewById(R.id.quan_ly_luong_thuong);
+        btnDangXuat = (Button) view.findViewById(R.id.btn_dang_xuat);
         btnNghiPhep = (Button) view.findViewById(R.id.quan_ly_nghi_phep);
         txtSumNhanVien = (TextView) view.findViewById(R.id.sum_nhan_vien);
         txtSumNghiPhep = (TextView) view.findViewById(R.id.txt_sum_nghi_phep);
