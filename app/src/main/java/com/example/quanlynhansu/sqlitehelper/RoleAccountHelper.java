@@ -33,6 +33,7 @@ public class RoleAccountHelper {
            insertRoleAccount(1,1);
            insertRoleAccount(2,2);
            insertRoleAccount(3,3);
+           insertRoleAccount(3,4);
        }
 
     }
@@ -88,7 +89,6 @@ public class RoleAccountHelper {
 
         for(RoleAccount roleAccount: roleAccountList){
             if(roleAccount.getAccountId() == idUser) {
-                Log.d("getAllRoleAccounts" , String.valueOf(roleAccount));
                 for(Role role: roles){
                     if(role.getRoleId() == roleAccount.getRoleId()) {
                         return role.getRoleName();

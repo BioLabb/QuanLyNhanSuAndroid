@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/white" /> <!-- Màu nền của phần tử -->
+<!--    <solid android:color="@color/white" /> &lt;!&ndash; Màu nền của phần tử &ndash;&gt;-->
     <corners android:radius="1000dp" /> <!-- Đặt bán kính bo tròn thành giá trị rất lớn (ví dụ: 1000dp) để tạo hình dạng hình tròn -->
     <solid android:textColor="@color/black" /> <!-- Màu chữ của phần tử -->
 </shape>

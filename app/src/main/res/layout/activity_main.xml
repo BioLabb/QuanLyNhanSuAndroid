@@ -71,16 +71,20 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="@+id/inputTextLayoutMail"
         app:layout_constraintTop_toBottomOf="@id/inputTextLayoutMail">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputTextPass"
             android:layout_width="@dimen/wight_input_login"
             android:layout_height="@dimen/height_input_login"
-            android:maxLength="@integer/size_pass"
-            android:inputType="textPassword"
-            android:hint="@string/password"
             android:background="@color/white"
+<<<<<<< HEAD
             />
 
+=======
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLength="@integer/size_pass" />
+>>>>>>> d6544599ac716e33fa719fd00e5ebca257af3abf
     </com.google.android.material.textfield.TextInputLayout>
 
 <!--button sign-->

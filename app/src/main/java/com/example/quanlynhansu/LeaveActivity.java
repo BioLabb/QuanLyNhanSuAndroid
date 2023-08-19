@@ -27,6 +27,7 @@ public class LeaveActivity extends AppCompatActivity {
     LeaveHelper leaveHelper;
 
     ListView Lview;
+    EditText editStartDate,editEndDate,editReason;
     private LeaveAdapter adapter;
 
     @Override
@@ -36,9 +37,9 @@ public class LeaveActivity extends AppCompatActivity {
 
         int iduser = AccountStore.getUser().getAccountID();
         leaveHelper  = new LeaveHelper(LeaveActivity.this);
-        EditText editStartDate = findViewById(R.id.editStartDate);
-        EditText editEndDate = findViewById(R.id.editEndDate);
-        EditText editReason = findViewById(R.id.editReason);
+        editStartDate = findViewById(R.id.editStartDate);
+        editEndDate = findViewById(R.id.editEndDate);
+        editReason = findViewById(R.id.editReason);
         Button btnSubmit = findViewById(R.id.btnSubmit);
         Lview = findViewById(R.id.listLeave);
 
@@ -159,17 +160,46 @@ public class LeaveActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Leave leave = new Leave(editStartDate.getText().toString(),editEndDate.getText().toString(),editReason.getText().toString(),"Chưa duyệt",iduser);
-                leaveHelper.insertLeave(leave);
-                System.out.println(leave);
-                System.out.println(editReason.getText().toString());
+                if(checkErrorValue()) {
+                    Leave leave = new Leave(editStartDate.getText().toString(), editEndDate.getText().toString(), editReason.getText().toString(), "Chưa duyệt", iduser);
+                    leaveHelper.insertLeave(leave);
+                    System.out.println(leave);
+                    System.out.println(editReason.getText().toString());
 
-                System.out.println(editEndDate.getText());
-                System.out.println(editStartDate.getText());
+                    System.out.println(editEndDate.getText());
+                    System.out.println(editStartDate.getText());
 
-                adapter.updateData(leaveHelper.getAllLeavesReverse());
+                    adapter.updateData(leaveHelper.getAllLeavesReverse());
+                }
 
             }
         });
+    }
+    public boolean checkErrorValue(){
+
+        int count = 0;
+        EditText[] editTexts = new EditText[] {
+                editStartDate,editEndDate,editReason
+        };
+
+        for (EditText editText : editTexts) {
+            if (editText.isEnabled()) {
+                String hint = editText.getHint().toString();
+
+                String errorMessage = hint + " không bỏ trống";
+
+                String fieldValue = editText.getText().toString().trim();
+//                nếu trống thì báo lỗi
+                if (fieldValue.isEmpty()) {
+                    editText.setError(errorMessage);
+                    count++;
+                }
+            }
+        }
+        if (count == 0)
+            return true;
+        else
+            return false;
+
     }
 }

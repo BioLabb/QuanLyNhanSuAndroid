@@ -32,11 +32,10 @@ public class AccountHelper {
 
         if (!dbHelper.isTableInitialized(database, TABLE_ACCOUNT))
         {
-            insertAccount(new Account("admin","12345","vanchien","email11","01424234","adress",1));
-            insertAccount(new Account("user1","12345","vanchien","email11","01424234","adress",1));
-            insertAccount(new Account("userName2","12345","HaiMai","email12","01424234","adress",2));
-            insertAccount(new Account("userName3","12345","KimThien","email13","01424234","adress",3));
-
+            insertAccount(new Account("admin","12345","vanchien","admin@email.com","01424234","Tp hcm",1));
+            insertAccount(new Account("user1","12345","vanchien","chien@email.com","013546435","HN",3));
+            insertAccount(new Account("userName2","12345","HaiMai","Mai@email.com","0786864235","HN",2));
+            insertAccount(new Account("userName3","12345","KimThien","Thien@email.com","036547547","Tp hcm",3));
         }
     }
 
