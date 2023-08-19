@@ -43,7 +43,7 @@ public class UserManagement extends AppCompatActivity {
     LinearLayout onBack;
     Spinner spinnerRoom,spinnerRole;
     SearchView searchAccount;
-    Button searchCondition;
+    Button searchCondition, btnInsertUser;
     ImageView imgSetting;
     TextView txtLableSetting;
     List<Account> accountList;
@@ -65,7 +65,9 @@ public class UserManagement extends AppCompatActivity {
         searchCondition = findViewById(R.id.searchCondition);
         imgSetting = findViewById(R.id.imgSetting);
         txtLableSetting = findViewById(R.id.txtLableSetting);
-
+        btnInsertUser = findViewById(R.id.btnInsertUser);
+        // Mở rộng thanh tìm kiếm ngay khi màn hình khởi động
+        searchAccount.setIconified(false);
         accountList = accountHelper.getAllAccountsChien();
         //khoi tao vaf gan adapter
         adapter = new AccountAdapter(this,accountList );
@@ -111,6 +113,14 @@ public class UserManagement extends AppCompatActivity {
                 return false;
             }
         });
+
+        btnInsertUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserManagement.this, InsertUserActivity.class);
+                startActivity(intent);
+            }
+        });
         searchCondition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,6 +130,8 @@ public class UserManagement extends AppCompatActivity {
                 searchCondition(selectedRole,selectedRoom);
             }
         });
+
+
 
         String[] items = {"Lựa chọn phưng thức tìm kiếm", "Tìm Theo Tên", "Tìm Theo Email", "Tìm Theo Số DT","Tìm Theo Địa Chỉ","Tìm Theo Phòng Ban"};
 
