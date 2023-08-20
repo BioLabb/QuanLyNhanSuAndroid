@@ -88,7 +88,7 @@ public class UserManagement extends AppCompatActivity {
                 // Lấy thông tin từ đối tượng Account
 
                 int accountID = selectedAccount.getAccountID();
-
+                System.out.println("selectedAccountid" + accountID);
 
                 // Tạo Intent để chuyển đến Activity mới và truyền thông tin
                 Intent intent = new Intent(UserManagement.this, PersonalInformation.class);
@@ -250,7 +250,7 @@ public class UserManagement extends AppCompatActivity {
             adapterNew = new AccountAdapter(this,accountListFinal );
 
         }
-
+        adapter = adapterNew;
         // Hiển thị danh sách filteredItems lên giao diện người dùng
         // Ví dụ: cập nhật Adapter của ListView hoặc RecyclerView
         listUser.setAdapter(adapterNew);
@@ -301,6 +301,7 @@ public class UserManagement extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // Gọi lại hàm lấy dữ liệu từ CSDL (hoặc từ nguồn dữ liệu khác)
+        initSpenner();
         accountList = accountHelper.getAllAccountsChien();
         //khoi tao vaf gan adapter
         adapter = new AccountAdapter(this,accountList );

@@ -45,7 +45,11 @@ public class LeaveActivity extends AppCompatActivity {
 
 
         // Lấy dữ liệu từ Room
+<<<<<<< HEAD
         List<Leave> leaveList = leaveHelper.getAllLeaveByIdUser(iduser);
+=======
+        List<Leave> leaveList = leaveHelper.getAllLeaveByIdUserReverse(AccountStore.getUser().getAccountID());
+>>>>>>> 4331e18e2f21acd3a640efcd1862a20c5cb31d94
 
         // Tạo adapter và gắn dữ liệu vào ListView
         adapter = new LeaveAdapter(LeaveActivity.this, leaveList);
@@ -169,7 +173,7 @@ public class LeaveActivity extends AppCompatActivity {
                     System.out.println(editEndDate.getText());
                     System.out.println(editStartDate.getText());
 
-                    adapter.updateData(leaveHelper.getAllLeavesReverse());
+                    adapter.updateData(leaveHelper.getAllLeaveByIdUserReverse(AccountStore.getUser().getAccountID()));
                 }
 
             }

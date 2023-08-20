@@ -19,6 +19,7 @@ public class LeaveHelper {
     private Context context;
     public final static String TABLE_LEAVE = "Leave";
     private final String LEAVE_ID = "leave_id";
+<<<<<<< HEAD
     private SQLiteHelper sqLiteHelper;
     private SQL dbHelper;
     private final SQLiteDatabase database;
@@ -56,8 +57,29 @@ public class LeaveHelper {
             insertLeave(new Leave("5/10/2023","7/11/2023","lam giay to tren phuong","da duyet",1));
 
         }
+=======
+    private SQL dbHelper;
+    private final SQLiteDatabase database;
+
+    public LeaveHelper(Context context) {
+        this.context = context;
+        dbHelper = new SQL(context);
+        database = dbHelper.getWritableDatabase();
+        onCreate(database);
+>>>>>>> 4331e18e2f21acd3a640efcd1862a20c5cb31d94
     }
 
+    public void onCreate(SQLiteDatabase database){
+        //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
+
+
+        if (!dbHelper.isTableInitialized(database, TABLE_LEAVE))
+        {
+            insertLeave(new Leave("20/6/2020","23/6/2020","Nghỉ về quê","da duyet",2));
+            insertLeave(new Leave("2/7/2020","5/7/2020","Nghỉ có việc","da duyet",2));
+
+        }
+    }
     public int insertLeave(Leave leave) {
         ContentValues values = new ContentValues();
         values.put("start_date", leave.getStartDate());
@@ -137,6 +159,27 @@ public class LeaveHelper {
         String query = String.format("SELECT * FROM %s WHERE status = '%s'",TABLE_LEAVE, status);
         Cursor cursor = database.rawQuery(query,null);
 
+        if (cursor.moveToFirst()) {
+            do {
+                Leave leave = new Leave(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getInt(5)
+                );
+                leaveList.add(leave);
+            } while (cursor.moveToNext());
+        }
+
+        return leaveList;
+    }
+    public List<Leave> getAllLeaveByIdUserReverse(int accountId) {
+        List<Leave> leaveList = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_LEAVE + " WHERE account_id = " + accountId + " ORDER BY leave_id DESC";
+
+        Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
                 Leave leave = new Leave(
