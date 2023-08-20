@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.example.quanlynhansu.R;
 import com.example.quanlynhansu.object.Leave;
+import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.LeaveHelper;
 
 
@@ -40,7 +41,9 @@ public class LeaveStatisticAdapter extends ArrayAdapter<Leave> {
         TextView tvTotalLeave = convertView.findViewById(R.id.tvTotalLeave);
         TextView tvStatus = convertView.findViewById(R.id.tvStatus);
 
-        tvIdUser.setText(String.valueOf(leave.getAccountId()));
+        AccountHelper accountHelper = new AccountHelper(this.getContext());
+
+        tvIdUser.setText(String.valueOf(accountHelper.getAccount(leave.getAccountId()).getFullName()));
         tvTotalLeave.setText(String.valueOf((int) leaveHelper.totalAllLeaveDate(leave.getAccountId())));
         tvStatus.setText(String.valueOf((int) leaveHelper.totalUnapprovedDay(leave.getAccountId())));
 
