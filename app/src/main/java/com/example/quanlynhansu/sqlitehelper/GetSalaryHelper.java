@@ -43,6 +43,9 @@ public class GetSalaryHelper {
 
         }
     }
+
+
+
      public int insert(GetSalary getSalary){
          ContentValues values = new ContentValues();
 
@@ -198,5 +201,13 @@ public class GetSalaryHelper {
             return 0; // Cập nhật thất bại
         }
         return 1; // Cập nhật thành công
+    }
+
+    public boolean isUserHaveSalary(int idUser){
+        String SQL_SELECT = String.format("SELECT * FROM %s WHERE account_id = %d",TABLE_GET_SALARY,idUser);
+        Cursor cursor = DB.rawQuery(SQL_SELECT,null );
+        if (cursor.moveToFirst())
+            return true;
+        return false;
     }
 }

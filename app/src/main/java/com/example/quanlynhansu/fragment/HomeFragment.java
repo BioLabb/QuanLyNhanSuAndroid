@@ -22,11 +22,15 @@ import com.example.quanlynhansu.R;
 import com.example.quanlynhansu.RoomActivity;
 import com.example.quanlynhansu.RoomDetailsActivity;
 import com.example.quanlynhansu.RoomListActivity;
+import com.example.quanlynhansu.object.Account;
+import com.example.quanlynhansu.object.GetSalary;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
 import com.example.quanlynhansu.sqlitehelper.GetSalaryHelper;
 import com.example.quanlynhansu.sqlitehelper.LeaveHelper;
 import com.example.quanlynhansu.store.AccountStore;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment{
     private Context context;
@@ -65,7 +69,6 @@ public class HomeFragment extends Fragment{
                 changeActivity(context, AttendanceActivity.class);
             }
         });
-
         btnLuongThuong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
