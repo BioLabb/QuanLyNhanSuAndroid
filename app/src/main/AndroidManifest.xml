@@ -52,6 +52,12 @@
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
+            android:name=".RoomListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RoomDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -61,8 +67,4 @@
             </intent-filter>
         </activity>
     </application>
-<<<<<<< HEAD
-=======
-
->>>>>>> 4331e18e2f21acd3a640efcd1862a20c5cb31d94
 </manifest>
