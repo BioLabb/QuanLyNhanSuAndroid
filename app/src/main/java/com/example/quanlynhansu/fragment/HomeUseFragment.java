@@ -83,6 +83,17 @@ public class HomeUseFragment extends Fragment {
         return view;
     }
 
+    private void setText(){
+        AttendanceHelper attendanceHelper = new AttendanceHelper(getContext());
+        String sumCong = String.valueOf(attendanceHelper.totalAllAttendance(AccountStore.getUser().getAccountID()));
+        tongCong.setText(sumCong);
+
+        // set tong luong
+        GetSalaryHelper getSalaryHelper = new GetSalaryHelper(getContext());
+        String sumSalary = String.valueOf(getSalaryHelper.sumGetSalaryById(AccountStore.getUser().getAccountID(),getContext()));
+        tongLuong.setText(sumSalary);
+    }
+
     private void init(){
         avatar = (ImageView) view.findViewById(R.id.img_avatar);
         nameUser = (TextView) view.findViewById(R.id.txt_name);
@@ -92,5 +103,7 @@ public class HomeUseFragment extends Fragment {
         dkNghiPhep = (Button) view.findViewById(R.id.btn_dk_phep);
         chamCong = (Button) view.findViewById(R.id.btn_cham_cong);
         btnHistoryAttendance = (Button) view.findViewById(R.id.btn_history_attendance);
+
+        this.setText();
     }
 }
