@@ -2,6 +2,7 @@ package com.example.quanlynhansu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 
-public class AddUseActivity extends AppCompatActivity {
+public class AddUseActivity extends Activity {
 
     EditText edtName, edtUser,edtPass,edtMail,edtPhone,edtAddress;
     Button btnAdd;

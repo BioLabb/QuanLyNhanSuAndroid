@@ -124,11 +124,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Boolean isAdmin(){
        RoleAccountHelper roleAccountHelper = new RoleAccountHelper(context);
-       if ( roleAccountHelper.searchRoleUser(AccountStore.getUser().getAccountID()).equals("User") )
+       if ( roleAccountHelper.searchRoleUser(AccountStore.getUser().getAccountID()).equals("Admin") )
        {
-           return false;
+           return true;
        }
-       return true;
+       return false;
     }
 
     private void changeActivity(Context context, Class<?> activity){
