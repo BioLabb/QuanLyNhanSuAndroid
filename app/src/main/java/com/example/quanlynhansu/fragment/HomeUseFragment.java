@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.quanlynhansu.AttendanceActivity;
 import com.example.quanlynhansu.AttendanceDetailsActivity;
 import com.example.quanlynhansu.LeaveActivity;
+import com.example.quanlynhansu.MainActivity;
 import com.example.quanlynhansu.R;
 import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
 import com.example.quanlynhansu.sqlitehelper.GetSalaryHelper;
@@ -32,6 +33,7 @@ public class HomeUseFragment extends Fragment {
     private TextView tongCong;
     private TextView tongLuong;
     private Button dkNghiPhep;
+    private Button dangXuat;
     private Button chamCong;
     private Button btnHistoryAttendance;
     @Override
@@ -80,8 +82,17 @@ public class HomeUseFragment extends Fragment {
             }
         });
 
+        dangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
+
+
 
     private void setText(){
         AttendanceHelper attendanceHelper = new AttendanceHelper(getContext());
@@ -99,9 +110,11 @@ public class HomeUseFragment extends Fragment {
         nameUser = (TextView) view.findViewById(R.id.txt_name);
         tongCong = (TextView) view.findViewById(R.id.txt_sum_cong);
         tongLuong = (TextView) view.findViewById(R.id.txt_sum_luong);
-//        Toast.makeText(getContext(),tongLuong.getText().toString(),Toast.LENGTH_SHORT).show();
+
         dkNghiPhep = (Button) view.findViewById(R.id.btn_dk_phep);
         chamCong = (Button) view.findViewById(R.id.btn_cham_cong);
+        dangXuat = (Button) view.findViewById(R.id.btn_dang_xuat);
+
         btnHistoryAttendance = (Button) view.findViewById(R.id.btn_history_attendance);
 
         this.setText();

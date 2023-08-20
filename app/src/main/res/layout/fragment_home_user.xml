@@ -17,6 +17,20 @@
         android:layout_alignParentTop="true"
         tools:ignore="ContentDescription" />
 
+    <Button
+        android:id="@+id/btn_dang_xuat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout3"
+        android:layout_marginStart="232dp"
+        android:layout_marginBottom="78dp"
+        android:layout_toEndOf="@+id/img_avatar"
+        android:background="@drawable/btn_tag_func"
+        android:text="Đăng xuất"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/img_avatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/txt_name"
         android:layout_width="wrap_content"
