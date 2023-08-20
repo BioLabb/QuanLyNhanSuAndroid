@@ -109,6 +109,11 @@ public class HomeFragment extends Fragment{
         txtSumCong = (TextView) view.findViewById(R.id.txt_sum_cong);
         txtSumLuong = (TextView) view.findViewById(R.id.txt_sum_luong);
 
+        this.setText();
+
+    }
+
+    private void setText(){
         // setName user at Textview
         txtViewName = (TextView) view.findViewById(R.id.txt_name);
         String userName = String.valueOf(AccountStore.getUser().getUserName());
@@ -135,7 +140,6 @@ public class HomeFragment extends Fragment{
         GetSalaryHelper getSalaryHelper = new GetSalaryHelper(context);
         String sumSalary = String.valueOf(getSalaryHelper.totalGetSalary(context));
         txtSumLuong.setText(sumSalary);
-
     }
 
     private void changeActivity(Context context, Class<?> activity){
