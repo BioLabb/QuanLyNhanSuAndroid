@@ -102,6 +102,7 @@ public class HomeUseFragment extends Fragment {
         // set tong luong
         GetSalaryHelper getSalaryHelper = new GetSalaryHelper(getContext());
         String sumSalary = String.valueOf(getSalaryHelper.sumGetSalaryById(AccountStore.getUser().getAccountID(),getContext()));
+        System.out.println(sumSalary);
         tongLuong.setText(sumSalary);
     }
 
