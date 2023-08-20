@@ -34,12 +34,14 @@ public class HomeUseFragment extends Fragment {
     private Button dkNghiPhep;
     private Button chamCong;
     private Button btnHistoryAttendance;
+    int isChamCong;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home_user,container,false);
 
         this.init();
+        this.setText();
 
         nameUser.setText(AccountStore.getUser().getUserName());
 
@@ -66,8 +68,13 @@ public class HomeUseFragment extends Fragment {
         chamCong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attendanceHelper.insertAttendance(formattedDate,AccountStore.getUser().getAccountID());
-                Toast.makeText(getContext() , "Chấm công thành công !!!", Toast.LENGTH_SHORT).show();
+                if(attendanceHelper.isHaveAttendance(formattedDate, AccountStore.getUser().getAccountID()))
+                    Toast.makeText(getContext() , "Bạn đã chấm công rồi ! vui đợi qua ngày mai.", Toast.LENGTH_SHORT).show();
+                else{
+                    isChamCong = attendanceHelper.insertAttendance(formattedDate,AccountStore.getUser().getAccountID());
+                    setText();
+                    Toast.makeText(getContext() , "Chấm công thành công !!!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

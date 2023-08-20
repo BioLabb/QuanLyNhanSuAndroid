@@ -65,6 +65,15 @@ public class AttendanceHelper {
         return 1; // Thêm thành công
     }
 
+    public boolean isHaveAttendance(String date, int accountId){
+        String query = String.format("SELECT * FROM %s where account_id = '%d' AND date = '%s'", TABLE_ATTENDANCE,accountId,date);
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor.moveToFirst()){
+            return true;
+        }
+        return false;
+    }
+
     public List<Attendance> getAllAttendances() {
         List<Attendance> attendanceList = new ArrayList<>();
         String SQL = "SELECT * FROM " + TABLE_ATTENDANCE;
