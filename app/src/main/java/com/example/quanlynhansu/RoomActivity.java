@@ -52,7 +52,7 @@ public class RoomActivity extends AppCompatActivity {
                 arrRoom
         );
         lvRoom.setAdapter(adapter);
-        tvTotalRoom.setText(String.valueOf(arrRoom.size()));
+
         //them room vao listview
         btnAddRoom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +89,7 @@ public class RoomActivity extends AppCompatActivity {
                 String nameRoom = edtRoom.getText().toString();
                 Room roomItem = new Room(nameRoom,0);
                 //chinh sua xong va gan lai vao database
-                roomHelper.updateRoom(roomItem,_posId);
+                roomHelper.updateNameRoom(roomItem,_posId);
                 //reset lai giao dien listview
                 arrRoom.clear();
                 //update lai mang ra giao dien

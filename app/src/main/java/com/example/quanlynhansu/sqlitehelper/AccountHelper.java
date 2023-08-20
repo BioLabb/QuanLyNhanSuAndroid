@@ -227,4 +227,41 @@ public class AccountHelper {
             return 1;
         return 0;
     }
+
+    public int getCountByIdRoom(int idRoom){
+        int countAccount = 0;
+        String SQL_SELECT = String.format("SELECT * FROM %s WHERE room_id = %s", TABLE_ACCOUNT, idRoom);
+        Cursor cursor = Data.rawQuery(SQL_SELECT, null);
+        if (cursor.moveToFirst()) {
+            do {
+                countAccount += 1;
+            } while (cursor.moveToNext());
+        }
+        return countAccount;
+    }
+
+    public List<Account> getAllAccountByIdRoom(int idRoom){
+        String SQL_SELECT = String.format("SELECT * FROM %s WHERE room_id = %s", TABLE_ACCOUNT, idRoom);
+        List<Account> accountList = new ArrayList<>();
+
+        Cursor cursor = Data.rawQuery(SQL_SELECT,null);
+        cursor.moveToFirst();
+
+        while (cursor.isAfterLast() == false){
+            Account account = new Account(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getInt(7)
+            );
+            cursor.moveToNext();
+            accountList.add(account);
+        }
+
+        return accountList;
+    }
 }

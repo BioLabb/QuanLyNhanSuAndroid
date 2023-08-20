@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.quanlynhansu.object.Account;
 import com.example.quanlynhansu.object.Attendance;
 import com.example.quanlynhansu.object.Leave;
 
@@ -18,14 +19,31 @@ public class AttendanceHelper {
     public static final String ATTENDANCE_ID = "attendance_id";
 
     private SQL q;
+
+    private SQLiteHelper sqLiteHelper;
     private final SQLiteDatabase database;
 
-    public AttendanceHelper(Context context) {
-        // Tạo cơ sở dữ liệu
-        q = new SQL(context);
-        // Tương tác với dữ liệu
-        // Cho ghi và đọc
-        database = q.getWritableDatabase();
+    public AttendanceHelper(Context context){
+        sqLiteHelper = new SQLiteHelper(context);
+        q =  new SQL(context);
+        database = sqLiteHelper.getWritableDatabase();
+        onCreate(database);
+    }
+
+    public void onCreate(SQLiteDatabase database){
+        //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
+        if (!q.isTableInitialized(database, TABLE_ATTENDANCE))
+        {
+            insertAttendance(new Attendance("1/1/2024",1));
+            insertAttendance(new Attendance("1/1/2024",2));
+            insertAttendance(new Attendance("1/1/2024",3));
+            insertAttendance(new Attendance("2/1/2024",4));
+            insertAttendance(new Attendance("2/1/2024",1));
+            insertAttendance(new Attendance("3/1/2024",2));
+            insertAttendance(new Attendance("4/1/2024",3));
+            insertAttendance(new Attendance("4/1/2024",1));
+            insertAttendance(new Attendance("4/1/2024",4));
+        }
     }
 
     public int insertAttendance(String date, int accountId) {

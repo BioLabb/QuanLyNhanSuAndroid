@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="16dp"
-        android:text="QUAN LY CHAM CONG"
+        android:text="Quản Lý Chấm Công"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +32,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="664dp"
         android:text="Tổng số công : "
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,9 +40,10 @@
         android:id="@+id/tvTotalAttendance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="114dp"
+        android:layout_marginStart="128dp"
         android:layout_marginTop="664dp"
-        android:text="tong so cong"
+        android:text="1000"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,6 +1,5 @@
 package com.example.quanlynhansu.fragment;
 
-import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +16,12 @@ import android.widget.Toast;
 import com.example.quanlynhansu.AttendanceActivity;
 import com.example.quanlynhansu.GetSalaryActivity;
 import com.example.quanlynhansu.LeaveActivity;
-import com.example.quanlynhansu.LeaveDetailsActivity;
 import com.example.quanlynhansu.LeaveStatisticActivity;
 import com.example.quanlynhansu.MainActivity;
 import com.example.quanlynhansu.R;
 import com.example.quanlynhansu.RoomActivity;
+import com.example.quanlynhansu.RoomDetailsActivity;
+import com.example.quanlynhansu.RoomListActivity;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
 import com.example.quanlynhansu.sqlitehelper.GetSalaryHelper;
@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment{
     private TextView txtSumNhanVien;
     private TextView txtSumNghiPhep;
     private TextView txtSumCong;
-    private TextView sumLuong;
+    private TextView txtSumLuong;
     private Button btnDangXuat;
     private Button btnPhongBan;
     private Button btnChamCong;
@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment{
         btnPhongBan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeActivity(context, RoomActivity.class);
+                changeActivity(context, RoomListActivity.class);
             }
         });
 
@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment{
         txtSumNhanVien = (TextView) view.findViewById(R.id.sum_nhan_vien);
         txtSumNghiPhep = (TextView) view.findViewById(R.id.txt_sum_nghi_phep);
         txtSumCong = (TextView) view.findViewById(R.id.txt_sum_cong);
-        sumLuong = (TextView) view.findViewById(R.id.sum_luong);
+        txtSumLuong = (TextView) view.findViewById(R.id.txt_sum_luong);
 
         // setName user at Textview
         txtViewName = (TextView) view.findViewById(R.id.txt_name);
@@ -133,7 +133,8 @@ public class HomeFragment extends Fragment{
 
         // set tong luong
         GetSalaryHelper getSalaryHelper = new GetSalaryHelper(context);
-        sumLuong.setText(String.valueOf(getSalaryHelper.totalGetSalary()));
+        String sumSalary = String.valueOf(getSalaryHelper.totalGetSalary(context));
+        txtSumLuong.setText(sumSalary);
 
     }
 
@@ -148,7 +149,7 @@ public class HomeFragment extends Fragment{
         int id = view.getId();
         if(id == btnPhongBan.getId()){
             Toast.makeText(context,String.format("%d, %d ", id, btnPhongBan),Toast.LENGTH_SHORT).show();
-            changeActivity(context, RoomActivity.class);
+            changeActivity(context, RoomListActivity.class);
         }else if(id == btnChamCong.getId()){
             changeActivity(context, LeaveActivity.class);
         }else if(id == btnNghiPhep.getId()){

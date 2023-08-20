@@ -45,7 +45,7 @@ public class LeaveActivity extends AppCompatActivity {
 
 
         // Lấy dữ liệu từ Room
-        List<Leave> leaveList = leaveHelper.getAllLeavesReverse();
+        List<Leave> leaveList = leaveHelper.getAllLeaveByIdUser(iduser);
 
         // Tạo adapter và gắn dữ liệu vào ListView
         adapter = new LeaveAdapter(LeaveActivity.this, leaveList);

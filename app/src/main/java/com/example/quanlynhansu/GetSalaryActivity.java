@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.quanlynhansu.Adapter.GetSalaryAdapter;
 import com.example.quanlynhansu.object.Account;
@@ -26,8 +27,11 @@ import java.util.List;
 public class GetSalaryActivity extends AppCompatActivity {
 
     ListView lvGetSalary;
+    List<Account> arrAccount;
     ArrayList<GetSalary> arrGetSalary;
-    ArrayList<Account> arrAccount;
+    TextView tvTotalGetSalary;
+    double sumSalary;
+    int idAccount;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,26 +40,12 @@ public class GetSalaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_get_salary);
 
         lvGetSalary = (ListView) findViewById(R.id.lvGetSalary);
+        tvTotalGetSalary = (TextView) findViewById(R.id.tvTotalGetSalary);
         GetSalaryHelper getSalaryHelper = new GetSalaryHelper(GetSalaryActivity.this);
         arrGetSalary = (ArrayList<GetSalary>) getSalaryHelper.getSalaryList();
-
-//        //test data
-
-
+        //set luong cho tung nhan vien
         AccountHelper accountHelper = new AccountHelper(this);
-        arrAccount = (ArrayList<Account>) accountHelper.getAllAccounts();
-
-        //duyet qua danh sach acccount de lay ra id user so sanh
-//        for (int i = 0 ; i < 5 || i < arrAccount.size() ; i++){
-//            int j = i + 1;
-//            try {
-//                if(getSalaryHelper.getGetSalaryByIdUser(j) != null) {
-//                    arrGetSalary.add(getSalaryHelper.getGetSalaryByIdUser(j));
-//                }
-//            } catch (ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
+        arrAccount =  accountHelper.getAllAccounts();
 
         GetSalaryAdapter adapter = new GetSalaryAdapter(
                 GetSalaryActivity.this,
@@ -64,6 +54,19 @@ public class GetSalaryActivity extends AppCompatActivity {
         );
         lvGetSalary.setAdapter(adapter);
 
+        GetSalary getSalary;
+        for (int i = 0; i < arrAccount.size() ; i++){
+            idAccount = arrAccount.get(i).getAccountID();
+            getSalary = getSalaryHelper.getSalaryByIdUser(idAccount);
+
+            //cap nhat vao database
+            sumSalary = getSalaryHelper.sumGetSalaryById(idAccount,this);
+            getSalaryHelper.updateSum(getSalary,sumSalary);
+        }
+        String sumGetSalary = String.valueOf(getSalaryHelper.totalGetSalary(this));
+        tvTotalGetSalary.setText(sumGetSalary);
+
+        //ham xoa bang luong
         lvGetSalary.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {

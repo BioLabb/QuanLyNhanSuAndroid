@@ -19,14 +19,43 @@ public class LeaveHelper {
     private Context context;
     public final static String TABLE_LEAVE = "Leave";
     private final String LEAVE_ID = "leave_id";
-
+    private SQLiteHelper sqLiteHelper;
     private SQL dbHelper;
     private final SQLiteDatabase database;
 
-    public LeaveHelper(Context context) {
-        this.context = context;
-        dbHelper = new SQL(context);
-        database = dbHelper.getWritableDatabase();
+    public LeaveHelper(Context context){
+        sqLiteHelper = new SQLiteHelper(context);
+        dbHelper =  new SQL(context);
+        database = sqLiteHelper.getWritableDatabase();
+        onCreate(database);
+    }
+
+    public void onCreate(SQLiteDatabase database){
+        //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
+        if (!dbHelper.isTableInitialized(database, TABLE_LEAVE))
+        {
+            insertLeave(new Leave("1/1/2023","6/1/2023","co viec ban dot xuat","chua duyet",1));
+            insertLeave(new Leave("1/1/2023","7/1/2023","di kham suc khoe","da duyet",2));
+            insertLeave(new Leave("1/1/2023","8/1/2023","co viec ban","chua duyet",3));
+            insertLeave(new Leave("2/2/2023","9/2/2023","di du lich nuoc ngoai","da duyet",2));
+            insertLeave(new Leave("2/2/2023","10/2/2023","ve que","chua duyet",4));
+            insertLeave(new Leave("3/3/2023","11/3/2023","co lich hen voi bac si","da duyet",3));
+            insertLeave(new Leave("4/4/2023","10/4/2023","bi tai nan giao thong","chua duyet",1));
+            insertLeave(new Leave("4/4/2023","9/4/2023","co viec ban dot xuat","da duyet",2));
+            insertLeave(new Leave("4/4/2023","8/4/2023","di du lich trong nuoc","chua duyet",3));
+            insertLeave(new Leave("5/5/2023","7/5/2023","kham suc khoe dinh ky","da duyet",4));
+            insertLeave(new Leave("1/6/2023","6/6/2023","co viec ban","chua duyet",1));
+            insertLeave(new Leave("1/6/2023","7/6/2023","bi sot cao","da duyet",2));
+            insertLeave(new Leave("1/6/2023","8/6/2023","co viec ban khan cap","chua duyet",3));
+            insertLeave(new Leave("2/7/2023","9/7/2023","di du lich ha long","da duyet",4));
+            insertLeave(new Leave("2/7/2023","10/7/2023","ve que tham nguoi than","chua duyet",3));
+            insertLeave(new Leave("3/8/2023","11/8/2023","di sinh nhat ban","da duyet",3));
+            insertLeave(new Leave("4/9/2023","10/9/2023","bi benh nang","chua duyet",4));
+            insertLeave(new Leave("4/10/2023","9/10/2023","kham suc khoe dinh ky","da duyet",2));
+            insertLeave(new Leave("4/10/2023","8/10/2023","co viec ban","chua duyet",3));
+            insertLeave(new Leave("5/10/2023","7/11/2023","lam giay to tren phuong","da duyet",1));
+
+        }
     }
 
     public int insertLeave(Leave leave) {

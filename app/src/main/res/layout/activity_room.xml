@@ -8,12 +8,14 @@
 
     <EditText
         android:id="@+id/edtInputRoom"
-        android:layout_width="412dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="396dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
-        android:hint="Enter name room"
+        android:hint="Nhập tên phòng ban"
         android:inputType="text"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,9 +23,9 @@
         android:id="@+id/btnAddRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:text="Add"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="120dp"
+        android:text="Thêm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,37 +33,28 @@
         android:id="@+id/btnUpdateRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="64dp"
-        android:text="Update"
+        android:layout_marginStart="264dp"
+        android:layout_marginTop="120dp"
+        android:text="Sửa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listViewRoom"
-        android:layout_width="407dp"
-        android:layout_height="455dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="136dp"
+        android:layout_width="409dp"
+        android:layout_height="526dp"
+        android:layout_marginTop="188dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="133dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="32dp"
-        android:text="Tổng số phòng ban: "
+        android:id="@+id/textView51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="16dp"
+        android:text="Chỉnh Sửa Phòng Ban"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listViewRoom" />
-
-    <TextView
-        android:id="@+id/tvTotalRoom"
-        android:layout_width="11dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="32dp"
-        android:text="0"
-        app:layout_constraintStart_toStartOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/listViewRoom" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

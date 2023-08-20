@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 public class Account {
 
     private int accountID;
-
     private String userName;
     private String passWord;
     private String fullName;

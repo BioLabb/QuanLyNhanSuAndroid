@@ -37,7 +37,9 @@ public class AttendanceDetailsAdapter extends ArrayAdapter<Attendance> {
         TextView tvIdAttendance = convertView.findViewById(R.id.tvIdAttendance);
         TextView tvDateAttendance = convertView.findViewById(R.id.tvDateAttendance);
 
-        tvIdUserAttendance.setText(String.valueOf(attendance.getAccountId()));
+        AccountHelper accountHelper = new AccountHelper(this.getContext());
+
+        tvIdUserAttendance.setText(String.valueOf(accountHelper.getAccount(attendance.getAccountId()).getFullName()));
         tvIdAttendance.setText(String.valueOf(attendance.getAttendanceId()));
         tvDateAttendance.setText(String.valueOf(attendance.getDate()));
 

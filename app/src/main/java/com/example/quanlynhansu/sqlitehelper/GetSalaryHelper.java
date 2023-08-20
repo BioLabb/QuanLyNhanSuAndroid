@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.quanlynhansu.object.Account;
+import com.example.quanlynhansu.object.Attendance;
 import com.example.quanlynhansu.object.GetSalary;
 import com.example.quanlynhansu.object.Leave;
 
@@ -33,14 +34,12 @@ public class GetSalaryHelper {
 
     public void onCreate(SQLiteDatabase database){
         //kiểm tra nếu không có dữ liệu trong bản hoặc chưa tạo bản thì chạy
-
-
         if (!dbHelper.isTableInitialized(database, TABLE_GET_SALARY))
         {
-            insert(new GetSalary("1/1/1970", 5000, 100,0,1 ));
-            insert(new GetSalary("1/1/1970", 1000, 700,0,2 ));
-            insert(new GetSalary("1/1/1970", 4000, 200,0,3 ));
-            insert(new GetSalary("1/2/1970", 2000, 300,0,4 ));
+            insert(new GetSalary("1/1/2023", 5000, 100,0,1 ));
+            insert(new GetSalary("1/1/2023", 1000, 700,0,2 ));
+            insert(new GetSalary("1/1/2023", 4000, 200,0,3 ));
+            insert(new GetSalary("1/2/2023", 2000, 300,0,4 ));
 
         }
     }
@@ -66,7 +65,6 @@ public class GetSalaryHelper {
         Cursor cursor = DB.rawQuery(SQL_SELECT,null );
 
         if(cursor.isFirst()){
-            // Chuyển chuỗi thành calender
 
             GetSalary getSalary = new GetSalary(
                     cursor.getInt(0),
@@ -110,34 +108,45 @@ public class GetSalaryHelper {
         return getSalaryList;
      }
 
-     public double totalGetSalary(){
-        double totalSum = 0;
-        String query = "SELECT * FROM " + TABLE_GET_SALARY;
-        Cursor cursor = DB.rawQuery(query,null);
+     public double sumGetSalaryById(int id ,Context context){
+        double sumSalary = 0;
+         String SQL_SELECT = String.format("SELECT * FROM %s WHERE account_id = %d",TABLE_GET_SALARY,id);
+         Cursor cursor = DB.rawQuery(SQL_SELECT,null );
 
-        cursor.moveToFirst();
-         while (cursor.isAfterLast() == false){
-             totalSum += cursor.getDouble(4);
-             cursor.moveToNext();
-             cursor.moveToNext();
+         if(cursor.moveToFirst()) {
+             AttendanceHelper attendanceHelper = new AttendanceHelper(context);
+             //cong thuc tinh tong luong = so ngay cham cong * he so luong + thuong
+             sumSalary = attendanceHelper.totalAllAttendance(id)
+                     * cursor.getDouble(2)
+                     + cursor.getDouble(3);
+         }
+         return sumSalary;
+     }
+
+     public double totalGetSalary(Context context){
+        double totalSum = 0;
+         String SQL_SELECT = String.format("SELECT * FROM %s ",TABLE_GET_SALARY);
+         Cursor cursor = DB.rawQuery(SQL_SELECT,null);
+         if (cursor.moveToFirst()) {
+             do {
+                 totalSum += cursor.getDouble(4);
+             } while (cursor.moveToNext());
          }
 
          return totalSum;
 
      }
 
-    public GetSalary getGetSalaryByIdUser(int accountId) throws ParseException {
-        String query = "SELECT * FROM " + TABLE_GET_SALARY + " WHERE account_id = " + accountId;
+    public GetSalary getSalaryByIdUser(int id){
+        String SQL_SELECT = String.format("SELECT * FROM %s WHERE account_id = %d",TABLE_GET_SALARY,id);
 
-        Cursor cursor = DB.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-            calendar.setTime(format.parse(cursor.getString(1)));
+        Cursor cursor = DB.rawQuery(SQL_SELECT,null );
+
+        if(cursor.moveToFirst()){
 
             GetSalary getSalary = new GetSalary(
                     cursor.getInt(0),
-                    calendar,
+                    cursor.getString(1),
                     cursor.getDouble(2),
                     cursor.getDouble(3),
                     cursor.getDouble(4),
@@ -172,4 +181,22 @@ public class GetSalaryHelper {
             return -1;
         return 1;
      }
+
+    public int updateSum(GetSalary getSalary, double sum) {
+        ContentValues values = new ContentValues();
+        values.put("date", getSalary.getStrDate());
+        values.put("bonus",getSalary.getBonus());
+        values.put("sum",sum);
+        values.put("account_id",getSalary.getAccountID());
+        values.put("salary", getSalary.getSalary());
+
+        String whereClause = "id = ?";
+        String[] whereArgs = {String.valueOf(getSalary.getId())};
+
+        int rowsAffected = DB.update(TABLE_GET_SALARY, values, whereClause, whereArgs);
+        if (rowsAffected < 0) {
+            return 0; // Cập nhật thất bại
+        }
+        return 1; // Cập nhật thành công
+    }
 }

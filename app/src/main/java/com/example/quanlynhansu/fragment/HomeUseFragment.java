@@ -63,7 +63,7 @@ public class HomeUseFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 attendanceHelper.insertAttendance(formattedDate,AccountStore.getUser().getAccountID());
-                Toast.makeText(getContext() , "ban da cham cong" + formattedDate,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext() , "Chấm công thành công !!!", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/tvNameUser"
-        android:layout_width="283dp"
-        android:layout_height="23dp"
+        android:layout_width="282dp"
+        android:layout_height="21dp"
         android:layout_marginStart="120dp"
         android:layout_marginTop="4dp"
         android:text="id user"
@@ -20,7 +20,7 @@
         android:layout_width="281dp"
         android:layout_height="20dp"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:text="100"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,18 +30,18 @@
         android:layout_width="281dp"
         android:layout_height="20dp"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:text="100"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView18"
-        android:layout_width="78dp"
-        android:layout_height="24dp"
+        android:layout_width="105dp"
+        android:layout_height="21dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:text="name user : "
+        android:text="Tên nhân viên : "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,8 +50,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="48dp"
-        android:text="total attendance : "
+        android:layout_marginTop="44dp"
+        android:text="Tổng số công : "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,8 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="28dp"
-        android:text="id user : "
+        android:layout_marginTop="24dp"
+        android:text="Id nhân viên : "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

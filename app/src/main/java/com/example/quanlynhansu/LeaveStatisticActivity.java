@@ -62,28 +62,6 @@ public class LeaveStatisticActivity extends AppCompatActivity {
 
         lvStatisticLeave.setAdapter(adapter);
 
-        //test data
-//        leaveHelper.insertLeave(new Leave("1/1/2023","6/1/2023","lamf bien","chua duyet",1));
-//        leaveHelper.insertLeave(new Leave("1/1/2023","7/1/2023","lamf bien","da duyet",2));
-//        leaveHelper.insertLeave(new Leave("1/1/2023","8/1/2023","lamf bien","chua duyet",3));
-//        leaveHelper.insertLeave(new Leave("2/2/2023","9/2/2023","lamf bien","da duyet",2));
-//        leaveHelper.insertLeave(new Leave("2/2/2023","10/2/2023","lamf bien","chua duyet",3));
-//        leaveHelper.insertLeave(new Leave("3/3/2023","11/3/2023","lamf bien","da duyet",3));
-//        leaveHelper.insertLeave(new Leave("4/4/2023","10/4/2023","lamf bien","chua duyet",1));
-//        leaveHelper.insertLeave(new Leave("4/4/2023","9/4/2023","lamf bien","da duyet",2));
-//        leaveHelper.insertLeave(new Leave("4/4/2023","8/4/2023","lamf bien","chua duyet",3));
-//        leaveHelper.insertLeave(new Leave("5/5/2023","7/5/2023","lamf bien","da duyet",2));
-//        leaveHelper.insertLeave(new Leave("1/6/2023","6/6/2023","lamf bien","chua duyet",1));
-//        leaveHelper.insertLeave(new Leave("1/6/2023","7/6/2023","lamf bien","da duyet",2));
-//        leaveHelper.insertLeave(new Leave("1/6/2023","8/6/2023","lamf bien","chua duyet",3));
-//        leaveHelper.insertLeave(new Leave("2/7/2023","9/7/2023","lamf bien","da duyet",2));
-//        leaveHelper.insertLeave(new Leave("2/7/2023","10/7/2023","lamf bien","chua duyet",3));
-//        leaveHelper.insertLeave(new Leave("3/8/2023","11/8/2023","lamf bien","da duyet",3));
-//        leaveHelper.insertLeave(new Leave("4/9/2023","10/9/2023","lamf bien","chua duyet",1));
-//        leaveHelper.insertLeave(new Leave("4/10/2023","9/10/2023","lamf bien","da duyet",2));
-//        leaveHelper.insertLeave(new Leave("4/10/2023","8/10/2023","lamf bien","chua duyet",3));
-//        leaveHelper.insertLeave(new Leave("5/10/2023","7/11/2023","lamf bien","da duyet",2));
-
         //xoa ngay nghi
         lvStatisticLeave.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

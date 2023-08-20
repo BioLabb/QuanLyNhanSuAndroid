@@ -12,9 +12,8 @@ import androidx.annotation.Nullable;
 
 import com.example.quanlynhansu.R;
 import com.example.quanlynhansu.object.GetSalary;
-import com.example.quanlynhansu.object.Leave;
 import com.example.quanlynhansu.sqlitehelper.AccountHelper;
-import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
+import com.example.quanlynhansu.sqlitehelper.GetSalaryHelper;
 
 import java.util.List;
 
@@ -41,11 +40,9 @@ public class GetSalaryAdapter extends ArrayAdapter<GetSalary> {
         TextView tvSumSalary = convertView.findViewById((R.id.tvSumSalary));
 
         AccountHelper accountHelper = new AccountHelper(this.getContext());
-        AttendanceHelper attendanceHelper = new AttendanceHelper(this.getContext());
-        //cong thuc tinh tong luong = so ngay cham cong * he so luong + thuong
-         sumSalary = attendanceHelper.totalAllAttendance(getSalary.getAccountID())
-                    * getSalary.getSalary()
-                    + getSalary.getBonus();
+        //set gia tri cho tong luong cua tung user
+        GetSalaryHelper getSalaryHelper = new GetSalaryHelper(this.getContext());
+        sumSalary = getSalaryHelper.sumGetSalaryById(getSalary.getAccountID(),this.getContext());
         getSalary.setSum(sumSalary);
 
         tvUserIdSalary.setText(String.valueOf(accountHelper.getAccount(getSalary.getAccountID()).getUserName()));

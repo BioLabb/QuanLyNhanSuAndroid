@@ -45,7 +45,7 @@ public class AttendanceAdapter extends ArrayAdapter<Attendance> {
         AttendanceHelper attendanceHelper = new AttendanceHelper(this.getContext());
         AccountHelper accountHelper = new AccountHelper(this.getContext());
 
-        tvNameUser.setText(String.valueOf(accountHelper.getAccount(attendance.getAccountId()).getUserName()));
+        tvNameUser.setText(String.valueOf(accountHelper.getAccount(attendance.getAccountId()).getFullName()));
         tvIdUserAtten.setText(String.valueOf(attendance.getAccountId()));
         tvTotalDate.setText(String.valueOf(attendanceHelper.totalAllAttendance(attendance.getAccountId())));
 

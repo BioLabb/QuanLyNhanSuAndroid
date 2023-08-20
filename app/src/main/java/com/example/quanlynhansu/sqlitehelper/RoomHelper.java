@@ -35,6 +35,7 @@ public class RoomHelper{
             insertRoom("Phòng quản lý",10);
         }
     }
+
     public int insertRoom(String name, int number ){
         ContentValues values = new ContentValues();
 //        values.put("room_id",room.getRoomID()) ;
@@ -116,7 +117,7 @@ public class RoomHelper{
         return 1; // Cập nhật thành công
     }
 
-    public int updateRoom(Room room ,int id) {
+    public int updateNameRoom(Room room ,int id) {
         ContentValues values = new ContentValues();
         values.put("name", room.getName());
         values.put("number", room.getNumber());
@@ -129,6 +130,26 @@ public class RoomHelper{
             return 0; // Cập nhật thất bại
         }
         return 1; // Cập nhật thành công
+    }
+
+    public int updateQuantity(Room room, int idRoom, int quantity) {
+        ContentValues values = new ContentValues();
+        values.put("name", room.getName());
+        values.put("number", quantity);
+
+        String whereClause = "room_id = ?";
+        String[] whereArgs = {String.valueOf(idRoom)};
+
+        int rowsAffected = Database.update(TABLE_ROOM, values, whereClause, whereArgs);
+        if (rowsAffected < 0) {
+            return 0; // Cập nhật thất bại
+        }
+        return 1; // Cập nhật thành công
+    }
+
+    public int numberOfRoom(int idRoom, Context context){
+        AccountHelper accountHelper = new AccountHelper(context);
+        return accountHelper.getCountByIdRoom(idRoom);
     }
 
 }
