@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.quanlynhansu.R;
-
 public class UserHomeFragment1 extends Fragment {
     private View view;
     private ImageView avatar;
@@ -36,6 +34,6 @@ public class UserHomeFragment1 extends Fragment {
         nameUser = (TextView) view.findViewById(R.id.txt_name);
         tongCong = (TextView) view.findViewById(R.id.txt_sum_cong);
         tongLuong = (TextView) view.findViewById(R.id.txt_sum_nghi_phep);
-        dkNghiPhep = (Button) view.findViewById(R.id.btn_dk_phep);
+        dkNghiPhep = (Button) view.findViewById(R.id.btn_history_attendance);
     }
 }
