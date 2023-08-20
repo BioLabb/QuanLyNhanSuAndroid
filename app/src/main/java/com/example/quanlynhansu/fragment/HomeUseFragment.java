@@ -50,7 +50,7 @@ public class HomeUseFragment extends Fragment {
         GetSalaryHelper getSalaryHelper =new GetSalaryHelper(getContext());
 
         int id = AccountStore.getUser().getAccountID();
-        tongLuong.setText("0");
+
 
         dkNghiPhep.setOnClickListener(new View.OnClickListener() {
             @Override
