@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,15 +16,21 @@ import androidx.fragment.app.Fragment;
 
 import com.example.quanlynhansu.AttendanceActivity;
 import com.example.quanlynhansu.AttendanceDetailsActivity;
+import com.example.quanlynhansu.GetSalaryActivity;
 import com.example.quanlynhansu.LeaveActivity;
 import com.example.quanlynhansu.MainActivity;
 import com.example.quanlynhansu.R;
+import com.example.quanlynhansu.object.Account;
+import com.example.quanlynhansu.object.GetSalary;
+import com.example.quanlynhansu.sqlitehelper.AccountHelper;
 import com.example.quanlynhansu.sqlitehelper.AttendanceHelper;
 import com.example.quanlynhansu.sqlitehelper.GetSalaryHelper;
 import com.example.quanlynhansu.store.AccountStore;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class HomeUseFragment extends Fragment {
@@ -37,6 +44,10 @@ public class HomeUseFragment extends Fragment {
     private Button chamCong;
     private Button btnHistoryAttendance;
     int isChamCong;
+    ArrayList<GetSalary> arrGetSalary;
+    List<Account> arrAccount;
+    int idAccount;
+    double sumSalary;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,6 +72,11 @@ public class HomeUseFragment extends Fragment {
         });
 
         AttendanceHelper attendanceHelper = new AttendanceHelper(getContext());
+        arrGetSalary = (ArrayList<GetSalary>) getSalaryHelper.getSalaryList();
+        arrGetSalary.clear();
+        //set luong cho tung nhan vien
+        AccountHelper accountHelper = new AccountHelper(getContext());
+        arrAccount =  accountHelper.getAllAccounts();
         // Lấy ngày hiện tại
         Date currentDate = new Date();
         // Định dạng ngày theo định dạng dd/MM/yyyy
@@ -70,10 +86,24 @@ public class HomeUseFragment extends Fragment {
         chamCong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(attendanceHelper.isHaveAttendance(formattedDate, AccountStore.getUser().getAccountID()))
+                if(attendanceHelper.isHaveAttendance(formattedDate, id))
                     Toast.makeText(getContext() , "Bạn đã chấm công rồi ! vui đợi qua ngày mai.", Toast.LENGTH_SHORT).show();
                 else{
-                    isChamCong = attendanceHelper.insertAttendance(formattedDate,AccountStore.getUser().getAccountID());
+                    GetSalary getSalary;
+                    isChamCong = attendanceHelper.insertAttendance(formattedDate,id);
+                    //duyet qua danh sach acc de thong ke luong
+                    for (int i = 0; i < arrAccount.size() ; i++){
+                        idAccount = arrAccount.get(i).getAccountID();
+                        getSalary = getSalaryHelper.getSalaryByIdUser(idAccount);
+                        //if account chua co he so luong thi khoi tao
+                        if(getSalaryHelper.isUserHaveSalary(idAccount)){
+                            //cap nhat vao database
+                            sumSalary = getSalaryHelper.sumGetSalaryById(idAccount,getContext());
+                            getSalaryHelper.updateSum(getSalary,sumSalary);
+                        }else {
+                            getSalaryHelper.insert(new GetSalary(formattedDate, 5000, 300,0, idAccount));
+                        }
+                    }
                     setText();
                     Toast.makeText(getContext() , "Chấm công thành công !!!", Toast.LENGTH_SHORT).show();
                 }
