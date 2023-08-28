@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment{
         btnPhongBan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeActivity(context, RoomActivity.class);
+                changeActivity(context, RoomListActivity.class);
             }
         });
 
@@ -123,13 +123,15 @@ public class HomeFragment extends Fragment{
     private void setText(){
         // setName user at Textview
         txtViewName = (TextView) view.findViewById(R.id.txt_name);
+        txtViewName.setText(String.format("Xin chào bạn " +
+                "!!!"));
 
-        if( String.valueOf(AccountStore.getUser().getUserName()) == null){
-            String userName = "user 1";
-        }else {
-            String userName = String.valueOf(AccountStore.getUser().getUserName());
-            txtViewName.setText(String.format("Xin chào %s", userName));
-        }
+//        if( String.valueOf(AccountStore.getUser().getUserName()) == null){
+//            String userName = "user 1";
+//        }else {
+//            String userName = String.valueOf(AccountStore.getUser().getUserName());
+//            txtViewName.setText(String.format("Xin chào %s", userName));
+//        }
 
         // set Count in box view
 

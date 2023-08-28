@@ -284,6 +284,7 @@ public class PersonalInformation extends AppCompatActivity {
 
 
                         accountHelper.removeAccountChien(idUser);
+                        onBackPressed();
                     }
                 });
 

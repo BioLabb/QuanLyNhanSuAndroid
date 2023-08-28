@@ -3,6 +3,7 @@ package com.example.quanlynhansu;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quanlynhansu.Adapter.RoomAdapter;
+import com.example.quanlynhansu.fragment.HomeFragment;
 import com.example.quanlynhansu.object.Room;
 import com.example.quanlynhansu.sqlitehelper.RoomHelper;
 
@@ -28,6 +30,7 @@ public class RoomActivity extends AppCompatActivity {
     TextView tvTotalRoom;
     Button btnAddRoom;
     Button btnUpdateRoom;
+    Button btnOnBack;
     int _posId;
 
     @SuppressLint("MissingInflatedId")
@@ -41,6 +44,7 @@ public class RoomActivity extends AppCompatActivity {
         lvRoom = (ListView) findViewById(R.id.listViewRoom);
         edtRoom = (EditText) findViewById(R.id.edtInputRoom);
         tvTotalRoom = (TextView) findViewById(R.id.tvTotalRoom);
+        btnOnBack = (Button) findViewById(R.id.btnOnBack);
 
         RoomHelper roomHelper = new RoomHelper(RoomActivity.this);
         //data khởi tạo ban đầu
@@ -59,7 +63,7 @@ public class RoomActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //lay data ma user nhap tu input
                 String nameRoom = edtRoom.getText().toString();
-                Toast.makeText(RoomActivity.this,"ban da them thanh cong " + nameRoom,Toast.LENGTH_SHORT).show();
+                Toast.makeText(RoomActivity.this,"ban da them thanh cong phong" + nameRoom,Toast.LENGTH_SHORT).show();
                 //them room vao database
                 roomHelper.insertRoom(new Room(nameRoom,0));
                 //reset lai giao dien listview
@@ -119,7 +123,7 @@ public class RoomActivity extends AppCompatActivity {
                                 arrRoom.addAll(roomHelper.getAllRooms());
                                 //lang nghe su thay doi cua data
                                 adapter.notifyDataSetChanged();
-                                tvTotalRoom.setText(String.valueOf(arrRoom.size()));
+                                //tvTotalRoom.setText(String.valueOf(arrRoom.size()));
                             }
                         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
@@ -132,6 +136,13 @@ public class RoomActivity extends AppCompatActivity {
             }
         });
 
+        btnOnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RoomActivity.this,  AdminActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

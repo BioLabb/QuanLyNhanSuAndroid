@@ -45,7 +45,6 @@ public class RoomListActivity extends AppCompatActivity {
         lvRoomList.setAdapter(adapter);
         //tinh tong so phong ban
         tvTotalRoom.setText(String.valueOf(arrRoom.size()));
-
         //chuyen sang chinh sua phong ban
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
