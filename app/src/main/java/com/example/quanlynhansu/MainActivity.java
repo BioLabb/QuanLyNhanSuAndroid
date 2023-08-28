@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this,"incorrect user or password",Toast.LENGTH_SHORT).show();
             }
         }else if( v.getId() == btnSign.getId()){
-            changeActivity(context,AddUseActivity.class);
+            changeActivity(context,InsertUserActivity.class);
         }
     }
 

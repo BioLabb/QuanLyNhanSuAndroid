@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.quanlynhansu.object.Account;
@@ -16,10 +17,12 @@ public class AddUseActivity extends Activity {
 
     EditText edtName, edtUser,edtPass,edtMail,edtPhone,edtAddress;
     Button btnAdd;
+    LinearLayout onBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_use);
+
 
         this.init();
 
@@ -45,6 +48,12 @@ public class AddUseActivity extends Activity {
                 }
             }
         });
+        onBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void init(){
@@ -54,7 +63,7 @@ public class AddUseActivity extends Activity {
         edtMail = (EditText) findViewById(R.id.editEmail);
         edtPhone= (EditText) findViewById(R.id.editNumber);
         edtAddress = (EditText) findViewById(R.id.editAddress);
-
+        onBack = findViewById(R.id.onBack);
         btnAdd = (Button) findViewById(R.id.btnAdd);
 
     }

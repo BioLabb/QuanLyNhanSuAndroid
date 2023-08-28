@@ -197,6 +197,7 @@ public class PersonalInformation extends AppCompatActivity {
 // Đặt vị trí tìm được làm giá trị mặc định của Spinner
         if (positionOfDefaultValue != -1) {
             spinnerRole.setSelection(positionOfDefaultValue);
+
         } else {
             // Nếu không tìm thấy đối tượng có tên "chien", bạn có thể xử lý hoặc đặt một giá trị mặc định khác ở đây
             // Ví dụ:

@@ -68,7 +68,7 @@ public class RoomActivity extends AppCompatActivity {
                 arrRoom.addAll(roomHelper.getAllRooms());
                 //lang nghe su thay doi cua data
                 adapter.notifyDataSetChanged();
-                tvTotalRoom.setText(String.valueOf(arrRoom.size()));
+//                tvTotalRoom.setText(String.valueOf(arrRoom.size()));
                 edtRoom.setText("");
             }
         });
@@ -131,5 +131,7 @@ public class RoomActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
     }
 }

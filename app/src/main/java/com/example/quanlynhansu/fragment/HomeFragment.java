@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment{
         btnPhongBan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeActivity(context, RoomListActivity.class);
+                changeActivity(context, RoomActivity.class);
             }
         });
 
@@ -123,8 +123,13 @@ public class HomeFragment extends Fragment{
     private void setText(){
         // setName user at Textview
         txtViewName = (TextView) view.findViewById(R.id.txt_name);
-        String userName = String.valueOf(AccountStore.getUser().getUserName());
-        txtViewName.setText(String.format("Xin chào %s",userName));
+
+        if( String.valueOf(AccountStore.getUser().getUserName()) == null){
+            String userName = "user 1";
+        }else {
+            String userName = String.valueOf(AccountStore.getUser().getUserName());
+            txtViewName.setText(String.format("Xin chào %s", userName));
+        }
 
         // set Count in box view
 
@@ -160,7 +165,7 @@ public class HomeFragment extends Fragment{
         int id = view.getId();
         if(id == btnPhongBan.getId()){
             Toast.makeText(context,String.format("%d, %d ", id, btnPhongBan),Toast.LENGTH_SHORT).show();
-            changeActivity(context, RoomListActivity.class);
+            changeActivity(context, RoomActivity.class);
         }else if(id == btnChamCong.getId()){
             changeActivity(context, LeaveActivity.class);
         }else if(id == btnNghiPhep.getId()){
